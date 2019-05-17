@@ -1,0 +1,20 @@
+<section *ngIf="showAdd">
+  <div mat-dialog-title>
+    <h1>ㅇㅇㅇ 생성</h1>
+  </div>
+
+  <div mat-dialog-content>
+
+    <label for="id">id</label>
+    <input type="text" name="id">
+    <br>
+    <label for="name">name</label>
+    <input type="text" name="name">
+
+  </div>
+  
+  <div mat-dialog-actions>
+    <button mat-button (click)="addTeam()">생성</button>
+    <button mat-button [mat-dialog-close]="data.animal">취소</button>
+  </div>
+</section>
