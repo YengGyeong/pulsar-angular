@@ -15,6 +15,9 @@ import { TopnavComponent } from './components/topnav/topnav.component';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { NavComponent } from './nav/nav.component';
+import { SearchFormComponent } from './search-form/search-form.component';
+import { SearchFormModule } from './search-form/search-form.module';
+import { PulsarMaterialModule } from 'src/material-module';
 
 @NgModule({
     imports: [
@@ -28,7 +31,11 @@ import { NavComponent } from './nav/nav.component';
         MatMenuModule,
         MatListModule,
         TranslateModule
+       
     ],
-    declarations: [LayoutComponent, NavComponent, TopnavComponent, SidebarComponent]
+    declarations: [LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, SearchFormComponent],
+    exports : [
+        PulsarMaterialModule
+    ]
 })
 export class LayoutModule {}

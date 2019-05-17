@@ -3,8 +3,14 @@
         [opened]="!(isHandset | async)!.matches">
         <mat-toolbar color="primary">SB Admin Marerial</mat-toolbar>
         <mat-nav-list>
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/team']">
+                <mat-icon class="sidenav-icon">user</mat-icon> Team
+            </a>
+            <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/user']">
+                <mat-icon class="sidenav-icon">user</mat-icon> User
+            </a>
             <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/dashboard']">
-                <mat-icon class="sidenav-icon">dashboard</mat-icon> Dashbard
+                <mat-icon class="sidenav-icon">dashboard</mat-icon> Dashbards
             </a>
             <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/charts']">
                 <mat-icon class="sidenav-icon">bar_chart</mat-icon> Charts

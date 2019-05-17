@@ -10,8 +10,10 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'dashboard'
+                redirectTo: 'team'
             },
+            { path: 'team', loadChildren: '../manage/team/team.module#TeamModule' },
+            { path: 'user', loadChildren: '../manage/user/user.module#UserModule' },
             {
                 path: 'dashboard',
                 loadChildren: './dashboard/dashboard.module#DashboardModule'

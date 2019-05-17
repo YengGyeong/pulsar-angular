@@ -1,0 +1,47 @@
+<div class="search-area">
+    <div class="search-form" *ngFor="let search of searchList; let i=index" [ngSwitch]="[search.kind]">
+      <!-- 일반 텍스트 -->
+      <div class="form-group input-group col-lg-6 search-div" *ngSwitchCase="'text'" >
+        <label>{{search.label}}</label>
+        <input class="form-control" >
+        <!-- [(ngModel)]="search.value" -->
+      </div>
+  
+      <!-- Select 박스-->
+      <div class="form-group input-group col-lg-6 search-div" *ngSwitchCase="'select'">
+        <label>{{search.label}}</label>
+        <select class="form-control" #sel (change)="search.value=sel.value" [value]='search.value'>
+          <option *ngFor="let option of search.selectValues">{{option}}</option>
+        </select>
+      </div>
+  
+      <!-- 돋보기 버튼 눌러서 팝업에서 검색-->
+      <div class="form-group input-group col-lg-6 search-div" *ngSwitchCase="'popup'">
+        <label>{{search.label}}</label>
+        <input type="text" class="form-control" readonly>
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button" (click)="openDialog(search.url)"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+
+      <!-- 날짜 검색 -->
+      <!-- <div class="form-group input-group col-lg-6 search-div" *ngSwitchCase="'date'">
+        
+        <label>{{search.label}}</label>
+        <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" [(ngModel)]="search.selectDates[0]" ngbDatepicker #d1="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button" (click)="d1.toggle()"><i class="fa fa-calendar"></i></button>
+        </div>
+        &nbsp;~&nbsp;
+        
+        <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" [(ngModel)]="search.selectDates[1]" ngbDatepicker #d2="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button" (click)="d2.toggle()"><i class="fa fa-calendar"></i></button>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="search-btn">
+      <button type="button" class="btn btn-secondary" (click)="sendToParent.emit(searchList)">검색</button>
+    </div>
+  </div>

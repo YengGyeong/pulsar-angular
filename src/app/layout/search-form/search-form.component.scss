@@ -1,0 +1,22 @@
+.search-area {
+    display: block;
+}
+.search-div {
+    float: left;
+}
+.search-div > label {
+    margin-right: 10px;
+    width: 17%;
+}
+.search-btn > button {
+    margin-left: 5px;
+    float: right;
+}
+input[readonly] {
+    background: white
+}
+:host ::ng-deep .datepicker-input {
+    .custom-select {
+        width: 50%;
+    }
+}
