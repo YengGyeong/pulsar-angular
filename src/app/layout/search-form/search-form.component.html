@@ -5,7 +5,7 @@
         </mat-form-field>
 
         <mat-form-field *ngSwitchCase="'select'" >
-            <mat-select placeholder="Select" #sel (selectionChange)="search.value=sel.value" [value]='search.value'>
+            <mat-select placeholder="{{search.label}}" #sel (selectionChange)="search.value=sel.value" [value]='search.value'>
                 <mat-option *ngFor="let option of search.selectValues" value="{{option}}">{{option}}</mat-option>
             </mat-select>
         </mat-form-field>

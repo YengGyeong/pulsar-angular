@@ -34,7 +34,7 @@ export class TeamListComponent implements OnInit {
     {
       kind: "date",
       label: "활동날짜",
-      selectDates: ["2019/05/14", "2019/05/16"],
+      selectDates: ["2019-05-14", "2019-05-16"],
       value: "",
       selectValues: []
     }
