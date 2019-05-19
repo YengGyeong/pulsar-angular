@@ -1,21 +1,51 @@
+<mat-card  >
+    <mat-card-content *ngFor="let search of searchList; let i=index" [ngSwitch]="[search.kind]">
+        <mat-form-field  *ngSwitchCase="'text'" >
+            <input matInput placeholder="{{search.label}}" [(ngModel)]="search.value">
+        </mat-form-field>
+
+        <mat-form-field *ngSwitchCase="'select'" >
+            <mat-select placeholder="Select" #sel (selectionChange)="search.value=sel.value" [value]='search.value'>
+                <mat-option *ngFor="let option of search.selectValues" value="{{option}}">{{option}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+      <div *ngSwitchCase="'date'">
+        <mat-form-field  >
+            <input matInput [matDatepicker]="picker" placeholder="시작날짜" [(ngModel)]="search.selectDates[0]">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        &nbsp;~&nbsp;
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker2" placeholder="끝날짜" [(ngModel)]="search.selectDates[1]">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <button mat-stroked-button color="primary" (click)="sendToParent(searchList)">검색</button>
+
+</mat-card> 
+
+<!-- 
+
 <div class="search-area">
     <div class="search-form" *ngFor="let search of searchList; let i=index" [ngSwitch]="[search.kind]">
-      <!-- 일반 텍스트 -->
+
       <div class="form-group input-group col-lg-6 search-div" *ngSwitchCase="'text'" >
         <label>{{search.label}}</label>
         <input class="form-control" >
-        <!-- [(ngModel)]="search.value" -->
+
       </div>
-  
-      <!-- Select 박스-->
+
       <div class="form-group input-group col-lg-6 search-div" *ngSwitchCase="'select'">
         <label>{{search.label}}</label>
         <select class="form-control" #sel (change)="search.value=sel.value" [value]='search.value'>
           <option *ngFor="let option of search.selectValues">{{option}}</option>
         </select>
       </div>
-  
-      <!-- 돋보기 버튼 눌러서 팝업에서 검색-->
+
       <div class="form-group input-group col-lg-6 search-div" *ngSwitchCase="'popup'">
         <label>{{search.label}}</label>
         <input type="text" class="form-control" readonly>
@@ -24,8 +54,8 @@
         </div>
       </div>
 
-      <!-- 날짜 검색 -->
-      <!-- <div class="form-group input-group col-lg-6 search-div" *ngSwitchCase="'date'">
+     
+      <div class="form-group input-group col-lg-6 search-div" *ngSwitchCase="'date'">
         
         <label>{{search.label}}</label>
         <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" [(ngModel)]="search.selectDates[0]" ngbDatepicker #d1="ngbDatepicker">
@@ -39,9 +69,9 @@
           <button class="btn btn-secondary" type="button" (click)="d2.toggle()"><i class="fa fa-calendar"></i></button>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <div class="search-btn">
-      <button type="button" class="btn btn-secondary" (click)="sendToParent.emit(searchList)">검색</button>
+        
     </div>
-  </div>
+  </div> -->

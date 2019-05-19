@@ -5,6 +5,8 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { TeamRoutingModule } from './team-routing.module';
 import { TeamFormComponent } from './team-form/team-form.component';
 import { LayoutModule } from 'src/app/layout/layout.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { SearchFormModule } from '../../search-form/search-form.module';
 
 @NgModule({
   declarations: [
@@ -14,8 +16,8 @@ import { LayoutModule } from 'src/app/layout/layout.module';
   ],
   imports: [
     CommonModule,
-    TeamRoutingModule,
-    LayoutModule
+    LayoutModule,
+    TeamRoutingModule
   ],
   entryComponents: [
     TeamFormComponent

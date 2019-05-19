@@ -31,11 +31,11 @@ import { PulsarMaterialModule } from 'src/material-module';
         MatMenuModule,
         MatListModule,
         TranslateModule
-       
     ],
-    declarations: [LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, SearchFormComponent],
+    declarations: [LayoutComponent, NavComponent, TopnavComponent, SidebarComponent],
     exports : [
-        PulsarMaterialModule
+        PulsarMaterialModule,
+        SearchFormModule
     ]
 })
 export class LayoutModule {}

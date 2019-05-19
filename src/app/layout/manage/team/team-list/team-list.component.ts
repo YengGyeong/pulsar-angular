@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Search } from '../../../layout/search-form/search';
+import { Search } from '../../../search-form/search';
 import { MatTableDataSource, PageEvent, Sort, MatDialog } from '@angular/material';
 import { Team } from '../model/team';
 import { TeamService } from '../service/team.service';
@@ -23,7 +23,7 @@ export class TeamListComponent implements OnInit {
       kind: "select",
       label: "유형",
       selectValues: ["A", "B", "C"],
-      value: ""
+      value: "B"
     },
     {
       kind: "popup",
@@ -34,14 +34,9 @@ export class TeamListComponent implements OnInit {
     {
       kind: "date",
       label: "활동날짜",
-      selectDates: ["2019-05-14", "2019-05-16"],
-      value: ""
-    },
-    {
-      kind: "date",
-      label: "활동날짜",
-      selectDates: ["2019-05-11", "2019-05-12"],
-      value: ""
+      selectDates: ["2019/05/14", "2019/05/16"],
+      value: "",
+      selectValues: []
     }
   ];
 
@@ -58,7 +53,7 @@ export class TeamListComponent implements OnInit {
   }
 
   selectDataList(searchReqList: Search[]) {
-    console.log(searchReqList);
+    console.log('받아온 거 '+searchReqList);
   }
 
 

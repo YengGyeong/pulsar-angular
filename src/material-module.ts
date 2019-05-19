@@ -42,10 +42,12 @@ import {
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule,
+  MatFormFieldModule
 } from '@angular/material';
 
 @NgModule({
   exports: [
+    MatFormFieldModule,
     A11yModule,
     CdkStepperModule,
     CdkTableModule,
@@ -88,6 +90,7 @@ import {
     MatTreeModule,
     PortalModule,
     ScrollingModule,
+    MatCardModule
   ]
 })
 export class PulsarMaterialModule {}

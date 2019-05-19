@@ -1,7 +1,7 @@
 <h3>팀 관리</h3>
 <br />
-<!-- [searchList]="searchList"  -->
-<!-- <search-form (sendToParent)="selectDataList($event)"></search-form> -->
+<!-- [searchList]="searchList" -->
+<search-form [searchList]="searchList" (sendToParent)="selectDataList($event)"></search-form>
 
 <div>
   <button mat-stroked-button color="primary" (click)="openForm()">생성</button>

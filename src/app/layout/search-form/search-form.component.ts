@@ -19,7 +19,7 @@ export class SearchFormComponent implements OnInit {
     searchList.forEach(function(v) {
       if(v.kind == "date") {
         v.selectDates.forEach(function(v1, index, array){
-          // array[index] = new NgbDate(Number(v1.substring(0,4)), Number(v1.substring(5,7)),  Number(v1.substring(8,10)));
+          array[index] = new Date(v1);
         })
       }
     });
@@ -29,10 +29,45 @@ export class SearchFormComponent implements OnInit {
     return this._searchList;
   }
 
-  @Output() sendToParent = new EventEmitter<Search[]>();
+  @Output() sendEvent = new EventEmitter<Search[]>();
+
+  formatDate(date: Date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  }
+
+  sendToParent(searchList) {
+    console.log(searchList);
+   
+    searchList.forEach(function(v) {
+      if(v.kind == "date") {
+        v.selectDates.forEach(function(v1, index, array){
+          var d = new Date(v1),
+              month = '' + (d.getMonth() + 1),
+              day = '' + d.getDate(),
+              year = d.getFullYear();
+          if (month.length < 2) month = '0' + month;
+          if (day.length < 2) day = '0' + day;
+          v.selectValues[index] = [year, month, day].join('-');
+        })
+      }
+    });
+    
+    console.log(searchList);
+
+    this.sendEvent.emit(searchList);
+  }
+
+  
 
   ngOnInit() {
-
   }
 
   openDialog(url: string) {
