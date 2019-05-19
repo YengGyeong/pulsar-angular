@@ -38,6 +38,9 @@
     .nav-brand {
         width: 100%;
     }
+    .nav-brand > b {
+        cursor: pointer;
+    }
 }
 @media screen and (max-width: 768px) {
     .hidden-sm {
