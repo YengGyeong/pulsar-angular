@@ -41,7 +41,7 @@ export class UserListComponent implements OnInit {
     {
       kind: "date",
       label: "입사일",
-      column : "hire_date",
+      column : "join",
       selectDates: ["2019-05-14", "2019-05-16"],
       value: "",
       selectValues: []
