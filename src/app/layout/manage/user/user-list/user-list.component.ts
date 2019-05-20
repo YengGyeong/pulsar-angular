@@ -7,6 +7,7 @@ import { UserService } from '../service/user.service';
 import { UserDetailComponent } from '../user-detail/user-detail.component';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { PageInfo } from '../../../common/model/page-info';
+import { Search } from 'src/app/layout/search-form/search';
 
 @Component({
   selector: 'app-user-list',
@@ -14,6 +15,38 @@ import { PageInfo } from '../../../common/model/page-info';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
+
+  searchList: Search[] = [
+    {
+      kind: "text",
+      label: "이름",
+      column: "name",
+      value: ""
+    },
+    {
+      kind: "select",
+      label: "부서",
+      column: "team",
+      selectValues: ["영업팀", "개발팀", "인사팀"],
+      //selectUrl: "/searchTeamNameList",
+      value: ""
+    },
+    {
+      kind: "popup",
+      label: "부서",
+      column: "team",
+      url: "abbb/sss",
+      value: ""
+    },
+    {
+      kind: "date",
+      label: "입사일",
+      column : "hire_date",
+      selectDates: ["2019-05-14", "2019-05-16"],
+      value: "",
+      selectValues: []
+    }
+  ];
 
   dataSource = new MatTableDataSource<User>();
   displayedColumns: string[] = ['select', 'id', 'name', 'email', 'team'];
@@ -87,5 +120,14 @@ export class UserListComponent implements OnInit {
   openDelete() {
 
   }
-  
+
+  selectDataList(searchReqList: Search[]) {
+    console.log('받아온 거 '+searchReqList);
+    this.userService.findByConditions(this.pageInfo, searchReqList).subscribe(data => {
+      this.dataSource.data = data;
+    });
+    this.userService.getCount().subscribe(data => {
+      this.length = data;
+    });
+  }
 }
