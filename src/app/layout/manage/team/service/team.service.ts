@@ -15,7 +15,7 @@ export class TeamService {
     this.teamsUrl = 'http://localhost:8080/teams';
   }
 
-  public findAll(pageInfo: PageInfo): Observable<any[]> {
+  public getTeams(pageInfo: PageInfo): Observable<any[]> {
     const params = new HttpParams()
       .set('pNo', pageInfo.pNo.toString())
       .set('pSize', pageInfo.pSize.toString())
@@ -29,8 +29,24 @@ export class TeamService {
     return this.http.get<number>(this.teamsUrl + "/count");
   }
 
-  public save(team: Team) {
+  public getTeam(id: number) {
+    return this.http.get<Team>(this.teamsUrl + "/" + id);
+  }
+
+  public addTeam(team: Team) {
     return this.http.post<Team>(this.teamsUrl, team);
+  }
+
+  public updateTeam(team: Team) {
+    return this.http.put<Team>(this.teamsUrl, team);
+  }
+
+  public deleteTeams(teams: Team[]) {
+    //return this.http.delete<Team>(this.teamsUrl);
+  }
+
+  public deleteTeam(id: number) {
+    return this.http.delete<Team>(this.teamsUrl + "/" + id);
   }
   
 }
