@@ -5,6 +5,7 @@ import { Team } from '../model/team';
 import { TeamService } from '../service/team.service';
 import { TeamFormComponent } from '../team-form/team-form.component';
 import { PageInfo } from '../../../common/model/page-info';
+import { Search } from 'src/app/layout/search-form/search';
 
 @Component({
   selector: 'app-team-list',
@@ -12,6 +13,33 @@ import { PageInfo } from '../../../common/model/page-info';
   styleUrls: ['./team-list.component.css']
 })
 export class TeamListComponent implements OnInit {
+
+  searchList: Search[] = [
+    {
+      kind: "text",
+      label: "팀이름",
+      value: "pulsar"
+    },
+    {
+      kind: "select",
+      label: "유형",
+      selectValues: ["A", "B", "C"],
+      value: "B"
+    },
+    {
+      kind: "popup",
+      label: "부서",
+      url: "abbb/sss",
+      value: ""
+    },
+    {
+      kind: "date",
+      label: "활동날짜",
+      selectDates: ["2019-05-14", "2019-05-16"],
+      value: "",
+      selectValues: []
+    }
+  ];
 
   displayedColumns: string[] = ['select', 'id', 'name'];
   length: number;
@@ -71,6 +99,9 @@ export class TeamListComponent implements OnInit {
 
   }
   
+  selectDataList(searchReqList: Search[]) {
+    console.log('받아온 거 '+searchReqList);
+  }
 
 }
 

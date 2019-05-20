@@ -6,6 +6,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { LayoutModule } from 'src/app/layout/layout.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CommonListComponent } from '../../common/common-list/common-list.component';
 
 @NgModule({
   declarations: [

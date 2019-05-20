@@ -1,3 +1,7 @@
+<h3>팀 관리</h3>
+<br />
+<search-form [searchList]="searchList" (sendToParent)="selectDataList($event)"></search-form>
+
 <div>
   <button mat-stroked-button color="primary" (click)="openForm()">생성</button>
   <button mat-stroked-button color="primary" (click)="openDelete()">삭제</button>
@@ -11,5 +15,4 @@
   [list] = "list" 
   (pageChange) = "pageEventHandler($event)" 
 ></app-common-list>
-
 
