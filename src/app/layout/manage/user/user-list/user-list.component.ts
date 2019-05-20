@@ -24,18 +24,25 @@ export class UserListComponent implements OnInit {
       value: ""
     },
     {
+      kind: "popup",
+      label: "팀",
+      column: "name",
+      value: ""
+    },
+    {
+      kind: "date",
+      label: "입사일",
+      column : "join",
+      selectDates: ["2019-05-14", "2019-05-16"],
+      value: "",
+      selectValues: []
+    },
+    {
       kind: "select",
       label: "부서",
       column: "team",
       selectValues: ["영업팀", "개발팀", "인사팀"],
       //selectUrl: "/searchTeamNameList",
-      value: ""
-    },
-    {
-      kind: "popup",
-      label: "부서",
-      column: "team",
-      url: "abbb/sss",
       value: ""
     },
     {

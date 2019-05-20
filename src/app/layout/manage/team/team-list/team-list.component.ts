@@ -24,20 +24,6 @@ export class TeamListComponent implements OnInit {
       value: "pulsar"
     },
     {
-      kind: "select",
-      label: "유형",
-      selectValues: ["A", "B", "C"],
-      column: 'z',
-      value: "B"
-    },
-    {
-      kind: "popup",
-      label: "부서",
-      url: "abbb/sss",
-      column: 'z',
-      value: ""
-    },
-    {
       kind: "date",
       label: "활동날짜",
       selectDates: ["2019-05-14", "2019-05-16"],

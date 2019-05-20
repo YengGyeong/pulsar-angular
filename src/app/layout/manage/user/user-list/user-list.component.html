@@ -1,16 +1,14 @@
 <h3>유저 관리</h3>
-<br />
 <search-form [searchList]="searchList" (sendEvent)="[selectDataList($event)]"></search-form>
 
-<div class="btn-box">
-  <button mat-stroked-button color="primary" (click)="openForm()">생성</button>
-  <button mat-stroked-button color="primary" (click)="deleteChecked()">삭제</button>
+<div id="toolbar">
+  <button class="toolbar-btn" mat-raised-button color="primary" (click)="openForm()">생성</button>
+  <button class="toolbar-btn" mat-raised-button color="primary" (click)="deleteChecked()">삭제</button>
 </div>
   
-<br>
-<div class="table-box">
-  <table mat-table matSort [dataSource]="dataSource" class="user-table"
-    (matSortChange)="sortData($event)">
+
+<table mat-table matSort [dataSource]="dataSource" class="user-table"
+  (matSortChange)="sortData($event)">
   
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
