@@ -1,32 +1,52 @@
-<mat-card  >
-    <mat-card-content *ngFor="let search of searchList; let i=index" [ngSwitch]="[search.kind]">
-        <mat-form-field  *ngSwitchCase="'text'" >
-            <input matInput placeholder="{{search.label}}" [(ngModel)]="search.value">
-        </mat-form-field>
+<mat-card>
+<mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)" rowHeight="{{gridHeight}}">
+  <div *ngFor="let search of searchList; let i=index" [ngSwitch]="[search.kind]">
+    
+      <mat-grid-tile *ngSwitchCase="'text'">
+      <mat-form-field>
+          
+        <input matInput placeholder="{{search.label}}" [(ngModel)]="search.value">
+        
+      </mat-form-field>
+      </mat-grid-tile>
 
-        <mat-form-field *ngSwitchCase="'select'" >
-            <mat-select placeholder="{{search.label}}" #sel (selectionChange)="search.value=sel.value" [value]='search.value'>
-                <mat-option *ngFor="let option of search.selectValues" value="{{option}}">{{option}}</mat-option>
-            </mat-select>
+      <mat-grid-tile *ngSwitchCase="'select'">
+          <mat-form-field>
+        <mat-select placeholder="{{search.label}}" #sel (selectionChange)="search.value=sel.value" [value]='search.value'>
+          <mat-option *ngFor="let option of search.selectValues" value="{{option}}">{{option}}</mat-option>
+        </mat-select>
         </mat-form-field>
+      </mat-grid-tile>
 
-      <div *ngSwitchCase="'date'">
-        <mat-form-field  >
-            <input matInput [matDatepicker]="picker" placeholder="시작날짜" [(ngModel)]="search.selectDates[0]">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+      <div *ngSwitchCase="'date'" >
+          <mat-grid-tile>
+        <div class="date-field">
+
+        <mat-form-field >
+          <input matInput [matDatepicker]="picker" placeholder="시작날짜" [(ngModel)]="search.selectDates[0]" >
+          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         &nbsp;~&nbsp;
+
+
         <mat-form-field>
           <input matInput [matDatepicker]="picker2" placeholder="끝날짜" [(ngModel)]="search.selectDates[1]">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
-      </div>
-    </mat-card-content>
-    <button mat-stroked-button color="primary" (click)="sendToParent(searchList)">검색</button>
 
-</mat-card> 
+        </div>
+        </mat-grid-tile>
+      </div>
+    
+<!-- <input mdInput placeholder="Title" [ngModel]="mydate  | date:'MM-dd-yyyy'"> -->
+  </div>
+</mat-grid-list>
+<button id="send-btn" mat-raised-button color="primary" (click)="sendToParent(searchList)">검색</button>
+</mat-card>
+
+
 
 <!-- 
 

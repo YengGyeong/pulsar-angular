@@ -12,6 +12,8 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class SearchFormComponent implements OnInit {
   model: any;
   _searchList: Search[];
+  gridHeight: any; 
+
   constructor() { }
 
   @Input()
@@ -24,6 +26,8 @@ export class SearchFormComponent implements OnInit {
       }
     });
     this._searchList = searchList;
+
+    this.gridHeight = (70 + (searchList.length/3) * 20) + "px";
   }
   get searchList() {
     return this._searchList;
@@ -43,9 +47,7 @@ export class SearchFormComponent implements OnInit {
     return [year, month, day].join('-');
   }
 
-  sendToParent(searchList) {
-    console.log(searchList);
-   
+  sendToParent(searchList) {   
     searchList.forEach(function(v) {
       if(v.kind == "date") {
         v.selectDates.forEach(function(v1, index, array){
@@ -65,9 +67,17 @@ export class SearchFormComponent implements OnInit {
     this.sendEvent.emit(searchList);
   }
 
-  
+
+  breakpoint;
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 600) ? 1 : 2;
+    this.breakpoint = (event.target.innerWidth >= 1200) ? 3 : 2;
+  }
 
   ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 600) ? 1 : 2;
+    this.breakpoint = (window.innerWidth >= 1200) ? 3 : 2;
   }
 
   openDialog(url: string) {
