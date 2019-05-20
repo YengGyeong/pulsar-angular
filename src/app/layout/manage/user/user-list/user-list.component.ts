@@ -24,6 +24,12 @@ export class UserListComponent implements OnInit {
       value: ""
     },
     {
+      kind: "popup",
+      label: "팀",
+      column: "name",
+      value: ""
+    },
+    {
       kind: "date",
       label: "입사일",
       column : "join",

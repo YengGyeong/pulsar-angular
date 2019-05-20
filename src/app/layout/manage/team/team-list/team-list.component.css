@@ -27,3 +27,12 @@ td.cdk-column-name:hover {
 th {
   width: 100px;
 }
+
+#toolbar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.toolbar-btn {
+  margin-right: 10px;
+}

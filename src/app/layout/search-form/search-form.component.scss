@@ -27,3 +27,17 @@ mat-card {
     float: right;
     bottom: 30px;
 }
+.popup-area {
+    position: relative;
+}
+.popup-btn {
+    position:absolute;
+    right: 0px;
+    bottom:0px;
+    cursor: pointer;
+    border-radius: 5px;
+    background: rgb(255,255,255);
+}
+.popup-btn:hover {
+    background: rgb(230,230,230);
+}

@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Search } from './search';
 // import {NgbModal, ModalDismissReasons, NgbDate, NgbDateAdapter} from '@ng-bootstrap/ng-bootstrap';
 import { forEach } from '@angular/router/src/utils/collection';
+import { MatDialog } from '@angular/material';
+import { UserListComponent } from '../manage/user/user-list/user-list.component';
 
 
 @Component({
@@ -14,7 +16,7 @@ export class SearchFormComponent implements OnInit {
   _searchList: Search[];
   gridHeight: any; 
 
-  constructor() { }
+  constructor( public dialog: MatDialog ) { }
 
   @Input()
   set searchList(searchList:Search[]) {
@@ -81,7 +83,19 @@ export class SearchFormComponent implements OnInit {
   }
 
   openDialog(url: string) {
-    console.log(url);
+    alert(url);
   }
+
+
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if(result != null) {
+    //     this.userService.addUser(result).subscribe(data => {
+    //       this.length += 1;
+    //       this.getUsers();
+    //     });
+    //   }
+    // });
+
 
 }

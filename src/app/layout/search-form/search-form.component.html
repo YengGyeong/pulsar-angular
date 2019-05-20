@@ -1,97 +1,52 @@
 <mat-card>
-<mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)" rowHeight="{{gridHeight}}">
-  <div *ngFor="let search of searchList; let i=index" [ngSwitch]="[search.kind]">
-    
+  <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)" rowHeight="{{gridHeight}}">
+    <div *ngFor="let search of searchList; let i=index" [ngSwitch]="[search.kind]">
+
       <mat-grid-tile *ngSwitchCase="'text'">
-      <mat-form-field>
-          
-        <input matInput placeholder="{{search.label}}" [(ngModel)]="search.value">
-        
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="{{search.label}}" [(ngModel)]="search.value">
+        </mat-form-field>
       </mat-grid-tile>
 
       <mat-grid-tile *ngSwitchCase="'select'">
-          <mat-form-field>
-        <mat-select placeholder="{{search.label}}" #sel (selectionChange)="search.value=sel.value" [value]='search.value'>
-          <mat-option *ngFor="let option of search.selectValues" value="{{option}}">{{option}}</mat-option>
-        </mat-select>
+        <mat-form-field>
+          <mat-select placeholder="{{search.label}}" #sel (selectionChange)="search.value=sel.value"
+            [value]='search.value'>
+            <mat-option *ngFor="let option of search.selectValues" value="{{option}}">{{option}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      
+      <mat-grid-tile *ngSwitchCase="'popup'">
+        <mat-form-field class="popup-area">
+          <input matInput class="popup-input" placeholder="{{search.label}}" [(ngModel)]="search.value" readonly="readonly" (click)="openDialog({{search.url}})"><i class="material-icons popup-btn">search</i>
         </mat-form-field>
       </mat-grid-tile>
 
-      <div *ngSwitchCase="'date'" >
-          <mat-grid-tile>
-        <div class="date-field">
 
-        <mat-form-field >
-          <input matInput [matDatepicker]="picker" placeholder="시작날짜" [(ngModel)]="search.selectDates[0]" >
-          <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        &nbsp;~&nbsp;
+      <div *ngSwitchCase="'date'">
+        <mat-grid-tile>
+          <div class="date-field">
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="시작날짜" [(ngModel)]="search.selectDates[0]">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            &nbsp;~&nbsp;
 
 
-        <mat-form-field>
-          <input matInput [matDatepicker]="picker2" placeholder="끝날짜" [(ngModel)]="search.selectDates[1]">
-          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-          <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker2" placeholder="끝날짜" [(ngModel)]="search.selectDates[1]">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
 
-        </div>
+          </div>
         </mat-grid-tile>
       </div>
-    
-<!-- <input mdInput placeholder="Title" [ngModel]="mydate  | date:'MM-dd-yyyy'"> -->
-  </div>
-</mat-grid-list>
-<button id="send-btn" mat-raised-button color="primary" (click)="sendToParent(searchList)">검색</button>
+
+      <!-- <input mdInput placeholder="Title" [ngModel]="mydate  | date:'MM-dd-yyyy'"> -->
+    </div>
+  </mat-grid-list>
+  <button id="send-btn" mat-raised-button color="primary" (click)="sendToParent(searchList)">검색</button>
 </mat-card>
-
-
-
-<!-- 
-
-<div class="search-area">
-    <div class="search-form" *ngFor="let search of searchList; let i=index" [ngSwitch]="[search.kind]">
-
-      <div class="form-group input-group col-lg-6 search-div" *ngSwitchCase="'text'" >
-        <label>{{search.label}}</label>
-        <input class="form-control" >
-
-      </div>
-
-      <div class="form-group input-group col-lg-6 search-div" *ngSwitchCase="'select'">
-        <label>{{search.label}}</label>
-        <select class="form-control" #sel (change)="search.value=sel.value" [value]='search.value'>
-          <option *ngFor="let option of search.selectValues">{{option}}</option>
-        </select>
-      </div>
-
-      <div class="form-group input-group col-lg-6 search-div" *ngSwitchCase="'popup'">
-        <label>{{search.label}}</label>
-        <input type="text" class="form-control" readonly>
-        <div class="input-group-append">
-          <button class="btn btn-secondary" type="button" (click)="openDialog(search.url)"><i class="fa fa-search"></i></button>
-        </div>
-      </div>
-
-     
-      <div class="form-group input-group col-lg-6 search-div" *ngSwitchCase="'date'">
-        
-        <label>{{search.label}}</label>
-        <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" [(ngModel)]="search.selectDates[0]" ngbDatepicker #d1="ngbDatepicker">
-        <div class="input-group-append">
-          <button class="btn btn-secondary" type="button" (click)="d1.toggle()"><i class="fa fa-calendar"></i></button>
-        </div>
-        &nbsp;~&nbsp;
-        
-        <input class="form-control" placeholder="yyyy-mm-dd" name="dp2" [(ngModel)]="search.selectDates[1]" ngbDatepicker #d2="ngbDatepicker">
-        <div class="input-group-append">
-          <button class="btn btn-secondary" type="button" (click)="d2.toggle()"><i class="fa fa-calendar"></i></button>
-        </div>
-      </div>
-    </div>
-
-    <div class="search-btn">
-        
-    </div>
-  </div> -->
