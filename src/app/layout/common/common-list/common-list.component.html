@@ -1,3 +1,33 @@
-<p>
-  common-list works!
-</p>
+
+<table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8"
+(matSortChange)="sortData($event)">
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox>
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox>
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <!-- displayColumns -->
+  <div *ngFor="let columnName of displayedColumns; let i=index">
+    <ng-container *ngIf="i != 0" matColumnDef={{columnName}}>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ columnName }} </th>
+      <td mat-cell *matCellDef="let element"> {{ element.get }} </td>
+    </ng-container>
+  </div>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [length]="length" [pageSize]="pageInfo.pageSize" [pageSizeOptions]="pageSizeOptions"
+  (page)="pageEvent=$event; paginate($event)">
+</mat-paginator>
+

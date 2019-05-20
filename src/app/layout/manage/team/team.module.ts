@@ -20,6 +20,7 @@ import { SearchFormModule } from '../../search-form/search-form.module';
     TeamRoutingModule
   ],
   entryComponents: [
+    TeamDetailComponent,
     TeamFormComponent
   ]
 })

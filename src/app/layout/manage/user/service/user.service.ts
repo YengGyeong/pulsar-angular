@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Team } from '../model/team';
+import { User } from '../model/user';
 import { PageInfo } from '../../../common/model/page-info';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TeamService {
+export class UserService {
 
-  private teamsUrl: string;
+  private usersUrl: string;
 
   constructor(private http: HttpClient) {
-    this.teamsUrl = 'http://localhost:8080/teams';
+    this.usersUrl = 'http://localhost:8080/users';
   }
 
   public findAll(pageInfo: PageInfo): Observable<any[]> {
@@ -22,15 +22,15 @@ export class TeamService {
       .set('dir', pageInfo.dir)
       .set('key', pageInfo.key);
 
-    return this.http.get<Team[]>(this.teamsUrl, {params});
+    return this.http.get<User[]>(this.usersUrl, {params});
   }
 
   public getCount() {
-    return this.http.get<number>(this.teamsUrl + "/count");
+    return this.http.get<number>(this.usersUrl + "/count");
   }
 
-  public save(team: Team) {
-    return this.http.post<Team>(this.teamsUrl, team);
+  public save(user: User) {
+    return this.http.post<User>(this.usersUrl, user);
   }
   
 }
