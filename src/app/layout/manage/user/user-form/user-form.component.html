@@ -1,3 +1,38 @@
-<p>
-  user-form works!
-</p>
+
+<div mat-dialog-title [ngSwitch]="state">
+    <span *ngSwitchCase="'add'">유저 생성</span>
+    <span *ngSwitchCase="'update'">유저 정보 수정</span>
+    <button mat-stroked-button color="primary" (click)="closeDialog()">X</button>
+</div>
+
+<div mat-dialog-content>
+
+  <div>
+    <label for="id">id</label>
+    <input type="text" name="id" value="{{ user?.id }}">
+  </div>
+
+  <div>
+    <label for="name">name</label>
+    <input type="text" name="name" value="{{ user?.name }}">
+  </div>
+
+  <div>
+    <label for="email">email</label>
+    <input type="text" name="email" value="{{ user?.email }}">
+  </div>
+
+  <div>
+    <label for="team">team</label>
+    <input type="text" name="team" value="{{ user?.team.name }}">
+
+  </div>
+
+</div>
+
+<div mat-dialog-actions [ngSwitch]="state">
+  <button mat-stroked-button color="primary" *ngSwitchCase="'add'" [mat-dialog-close]="user">생성</button>
+  <button mat-stroked-button color="primary" *ngSwitchCase="'update'" [mat-dialog-close]="user">수정</button>
+  <button mat-stroked-button color="primary" (click)="closeDialog()">취소</button>
+</div>
+

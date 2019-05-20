@@ -17,6 +17,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     UserRoutingModule,
     LayoutModule
+  ],
+  entryComponents: [
+    UserDetailComponent,
+    UserFormComponent
   ]
 })
 export class UserModule { }
