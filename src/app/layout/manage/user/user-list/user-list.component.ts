@@ -49,7 +49,7 @@ export class UserListComponent implements OnInit {
   ];
 
   dataSource = new MatTableDataSource<User>();
-  displayedColumns: string[] = ['select', 'id', 'name', 'email', 'team'];
+  displayedColumns: string[] = ['select', 'id', 'name', 'email', 'join', 'team'];
 
   // MatPaginator Inputs
   pageInfo: PageInfo;
@@ -73,6 +73,7 @@ export class UserListComponent implements OnInit {
   findAll() {
     this.userService.findAll(this.pageInfo).subscribe(data => {
       this.dataSource.data = data;
+      console.log(data);
     });
   }
 
