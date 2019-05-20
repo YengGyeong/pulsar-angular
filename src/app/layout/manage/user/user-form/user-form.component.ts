@@ -23,5 +23,9 @@ export class UserFormComponent {
   closeDialog(): void {
     this.dialogRef.close();
   }
+
+  openSelect() {
+    
+  }
   
 }

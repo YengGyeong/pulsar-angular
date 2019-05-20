@@ -113,7 +113,7 @@ export class UserListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed' + result);
+      console.log(result);
     });
   }
 

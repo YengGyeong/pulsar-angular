@@ -18,7 +18,7 @@
   <div *ngFor="let columnName of displayedColumns; let i=index">
     <ng-container *ngIf="i != 0" matColumnDef={{columnName}}>
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ columnName }} </th>
-      <td mat-cell *matCellDef="let element"> {{ element.get }} </td>
+      <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
     </ng-container>
   </div>
 

@@ -6,28 +6,29 @@
 </div>
 
 <div mat-dialog-content>
+  <form action="">
+    <div>
+      <label for="id">id</label>
+      <input type="text" name="id" value="{{ user?.id }}">
+    </div>
 
-  <div>
-    <label for="id">id</label>
-    <input type="text" name="id" value="{{ user?.id }}">
-  </div>
+    <div>
+      <label for="name">name</label>
+      <input type="text" name="name" value="{{ user?.name }}">
+    </div>
 
-  <div>
-    <label for="name">name</label>
-    <input type="text" name="name" value="{{ user?.name }}">
-  </div>
+    <div>
+      <label for="email">email</label>
+      <input type="text" name="email" value="{{ user?.email }}">
+    </div>
 
-  <div>
-    <label for="email">email</label>
-    <input type="text" name="email" value="{{ user?.email }}">
-  </div>
-
-  <div>
-    <label for="team">team</label>
-    <input type="text" name="team" value="{{ user?.team.name }}">
-
-  </div>
-
+    <div>
+      <label for="team">team</label>
+      <input type="text" name="teamId" value="{{ user?.team.id }}">
+      <input type="text" name="teamName" value="{{ user?.team.name }}" readonly>
+      <button mat-stroked-button color="primary" (click)="openSelect()">검색</button>
+    </div>
+  </form>
 </div>
 
 <div mat-dialog-actions [ngSwitch]="state">

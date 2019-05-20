@@ -7,6 +7,7 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { LayoutModule } from 'src/app/layout/layout.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonListComponent } from '../../common/common-list/common-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CommonListComponent } from '../../common/common-list/common-list.compon
   imports: [
     CommonModule,
     UserRoutingModule,
-    LayoutModule
+    LayoutModule,
+    FormsModule
   ],
   entryComponents: [
     UserDetailComponent,
