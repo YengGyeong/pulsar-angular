@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { User } from '../model/user';
+import { Team } from '../../team/model/team';
 
 @Component({
   selector: 'app-user-form',
@@ -17,13 +18,20 @@ export class UserFormComponent {
     @Inject(MAT_DIALOG_DATA) public data: any) {
       console.log(data);
       this.state = data.state;
-      this.user = data.user;
+      if(data.user == null) {
+        this.user = new User();
+        this.user.team = new Team();
+      } else {
+        this.user = {...data.user};
+      }
   }
 
+  // 버튼 - x , 취소
   closeDialog(): void {
     this.dialogRef.close();
   }
 
+  // 버튼 - 검색
   openSelect() {
     
   }

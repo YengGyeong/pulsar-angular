@@ -63,15 +63,15 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.findAll();
+    this.getUsers();
     this.userService.getCount().subscribe(data => {
       this.length = data;
     });
   }
 
   // 목록 불러오기 - 서비스 호출
-  findAll() {
-    this.userService.findAll(this.pageInfo).subscribe(data => {
+  getUsers() {
+    this.userService.getUsers(this.pageInfo).subscribe(data => {
       this.dataSource.data = data;
       console.log(data);
     });
@@ -81,14 +81,14 @@ export class UserListComponent implements OnInit {
   paginate(pageEvent: PageEvent) {
     this.pageInfo.pNo = pageEvent.pageIndex;
     this.pageInfo.pSize = pageEvent.pageSize;
-    this.findAll();
+    this.getUsers();
   }
 
   // 정렬
   sortData(sort: Sort) {
     this.pageInfo.dir = sort.direction;
     this.pageInfo.key = sort.active;
-    this.findAll();
+    this.getUsers();
   }
 
   // 조회
@@ -100,10 +100,41 @@ export class UserListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed' + result);
+      if(result === "openUpdate") {
+        this.openUpdate(user);
+      } else if (result === "openDelete") {
+        this.openDelete(user.id);
+      }
     });
   }  
- 
+
+  // 버튼(조회) - 수정
+  openUpdate(user: User) {
+    const dialogRef = this.dialog.open(UserFormComponent, {
+      width: '400px',
+      height: '300px',
+      data: {state: "update", user: user}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result != null) {
+        this.userService.updateUser(result).subscribe(data => {
+          this.getUsers();
+        });
+      }
+    });
+  } 
+
+  // 버튼(조회) - 삭제
+  openDelete(id: number) {
+    if(confirm("정말 삭제하시겠습니까?")) {
+      this.userService.deleteUser(id).subscribe(data => {
+        this.length -= 1;
+        this.getUsers();
+      });
+    }
+  }  
+
   // 버튼 - 생성
   openForm() {
     const dialogRef = this.dialog.open(UserFormComponent, {
@@ -113,13 +144,18 @@ export class UserListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      if(result != null) {
+        this.userService.addUser(result).subscribe(data => {
+          this.length += 1;
+          this.getUsers();
+        });
+      }
     });
   }
 
   // 버튼 - 삭제
-  openDelete() {
-
+  deleteChecked() {
+    // 체크박스 선택 모두 삭제
   }
 
   selectDataList(searchReqList: Search[]) {
@@ -131,4 +167,5 @@ export class UserListComponent implements OnInit {
       this.length = data;
     });
   }
+
 }
