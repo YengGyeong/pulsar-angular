@@ -8,6 +8,7 @@ import { LayoutModule } from 'src/app/layout/layout.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchFormModule } from '../../search-form/search-form.module';
 import { CommonListComponent } from '../../common/common-list/common-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CommonListComponent } from '../../common/common-list/common-list.compon
   imports: [
     CommonModule,
     LayoutModule,
-    TeamRoutingModule
+    TeamRoutingModule,
+    FormsModule
   ],
   entryComponents: [
     TeamDetailComponent,

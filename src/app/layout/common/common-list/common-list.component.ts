@@ -10,10 +10,10 @@ import { PageInfo } from '../../common/model/page-info';
 })
 export class CommonListComponent {
 
-  dataSource = new MatTableDataSource<Team>();
+  dataSource = new MatTableDataSource<any>();
   @Input() displayedColumns: string[];
   @Input() length: number;
-  @Input() set list(list: Team[]) {
+  @Input() set list(list: any[]) {
     this.dataSource.data = list;
   }
 

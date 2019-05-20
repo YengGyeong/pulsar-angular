@@ -16,7 +16,7 @@ export class UserService {
     this.usersUrl = 'http://localhost:8080/users';
   }
 
-  public findAll(pageInfo: PageInfo): Observable<any[]> {
+  public getUsers(pageInfo: PageInfo): Observable<any[]> {
     const params = new HttpParams()
       .set('pNo', pageInfo.pNo.toString())
       .set('pSize', pageInfo.pSize.toString())
@@ -29,11 +29,25 @@ export class UserService {
   public getCount() {
     return this.http.get<number>(this.usersUrl + "/count");
   }
-
-  public save(user: User) {
+  public getUser(id: number) {
+    return this.http.get<User>(this.usersUrl + "/" + id);
+  }
+  public addUser(user: User) {
     return this.http.post<User>(this.usersUrl, user);
   }
-  
+
+  public updateUser(user: User) {
+    return this.http.put<User>(this.usersUrl, user);
+  }
+
+  public deleteUsers(users: User[]) {
+    //return this.http.delete<User>(this.usersUrl);
+  }
+
+  public deleteUser(id: number) {
+    return this.http.delete<User>(this.usersUrl + "/" + id);
+  }
+
   public findByConditions(pageInfo: PageInfo, searchList: Search[]): Observable<any[]> {
 
     let map = new Map<string, string>();
