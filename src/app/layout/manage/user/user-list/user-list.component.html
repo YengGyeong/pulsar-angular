@@ -2,15 +2,15 @@
 <br />
 <search-form [searchList]="searchList" (sendEvent)="[selectDataList($event)]"></search-form>
 
-<div>
+<div class="btn-box">
   <button mat-stroked-button color="primary" (click)="openForm()">생성</button>
   <button mat-stroked-button color="primary" (click)="deleteChecked()">삭제</button>
 </div>
   
 <br>
-
-<table mat-table matSort [dataSource]="dataSource" class="user-table"
-  (matSortChange)="sortData($event)">
+<div class="table-box">
+  <table mat-table matSort [dataSource]="dataSource" class="user-table"
+    (matSortChange)="sortData($event)">
   
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
@@ -57,9 +57,10 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  
+</div>
+<div>  
   <mat-paginator [length]="length" [pageSize]="pageInfo.pageSize" [pageSizeOptions]="pageSizeOptions"
     (page)="pageEvent=$event; paginate($event)">
   </mat-paginator>
-  
+</div>  
   

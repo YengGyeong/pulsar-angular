@@ -111,8 +111,8 @@ export class UserListComponent implements OnInit {
   // 버튼(조회) - 수정
   openUpdate(user: User) {
     const dialogRef = this.dialog.open(UserFormComponent, {
-      width: '400px',
-      height: '300px',
+      width: '600px',
+      height: '400px',
       data: {state: "update", user: user}
     });
 
@@ -138,8 +138,8 @@ export class UserListComponent implements OnInit {
   // 버튼 - 생성
   openForm() {
     const dialogRef = this.dialog.open(UserFormComponent, {
-      width: '400px',
-      height: '300px',
+      width: '600px',
+      height: '400px',
       data: {state: "add", user: null}
     });
 

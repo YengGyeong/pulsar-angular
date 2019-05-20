@@ -1,3 +1,7 @@
+.table-box {
+  min-height: 300px;
+}
+
 .user-table {
   width: 100%;
 }
