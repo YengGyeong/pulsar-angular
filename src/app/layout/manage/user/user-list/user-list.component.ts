@@ -8,6 +8,7 @@ import { UserDetailComponent } from '../user-detail/user-detail.component';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { PageInfo } from '../../../common/model/page-info';
 import { Search } from 'src/app/layout/search-form/search';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -26,7 +27,7 @@ export class UserListComponent implements OnInit {
     {
       kind: "popup",
       label: "팀",
-      column: "name",
+      column: "team",
       value: ""
     },
     {
@@ -44,14 +45,6 @@ export class UserListComponent implements OnInit {
       selectValues: ["영업팀", "개발팀", "인사팀"],
       //selectUrl: "/searchTeamNameList",
       value: ""
-    },
-    {
-      kind: "date",
-      label: "입사일",
-      column : "join",
-      selectDates: ["2019-05-14", "2019-05-16"],
-      value: "",
-      selectValues: []
     }
   ];
 
@@ -165,8 +158,15 @@ export class UserListComponent implements OnInit {
     // 체크박스 선택 모두 삭제
   }
 
+  courses$: Observable<User[]>;
+
   selectDataList(searchReqList: Search[]) {
     console.log('받아온 거 '+searchReqList);
+
+    let user = new User();
+    user.name = searchReqList[0].value;
+    user.date = searchReqList[2].value;
+
     this.userService.findByConditions(this.pageInfo, searchReqList).subscribe(data => {
       this.dataSource.data = data;
     });
