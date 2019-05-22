@@ -20,10 +20,6 @@ tr.mat-row:hover {
   background: aliceblue;
 }
 
-td.cdk-column-name:hover {
-  cursor: pointer;
-}
-
 th {
   width: 100px;
 }

@@ -50,13 +50,11 @@ export class UserMainComponent implements OnInit {
     }
   ];
 
-  dataSource = new MatTableDataSource<User>();
   displayedColumns: string[] = ['select', 'id', 'name', 'email', 'join', 'team'];
-
-  // MatPaginator Inputs
+  tableHeaders: string[] = ['ID', '부서명'];
   pageInfo: PageInfo;
   length: number;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
+  list: User[];
   search: UserSearch = new UserSearch();
 
   constructor(
@@ -65,8 +63,12 @@ export class UserMainComponent implements OnInit {
       this.pageInfo = new PageInfo(0, 5, "asc", "id");
   }
 
-  
   ngOnInit() {
+    this.getUsers();
+  }
+
+  userListEventHandler(pageInfo: PageInfo) {
+    this.pageInfo = pageInfo;
     this.getUsers();
   }
 
@@ -75,26 +77,11 @@ export class UserMainComponent implements OnInit {
 
     let userSearch: UserSearch = this.getSearchDataSetting(this.searchList);
     this.userService.getUsers(this.pageInfo, userSearch).subscribe(data => {
-      this.dataSource.data = data;
+      this.list = data;
     });
     this.userService.getCount(userSearch).subscribe(data => {
       this.length = data;
     });
-
-  }
-
-  // 페이징
-  paginate(pageEvent: PageEvent) {
-    this.pageInfo.pNo = pageEvent.pageIndex;
-    this.pageInfo.pSize = pageEvent.pageSize;
-    this.getUsers();
-  }
-
-  // 정렬
-  sortData(sort: Sort) {
-    this.pageInfo.dir = sort.direction;
-    this.pageInfo.key = sort.active;
-    this.getUsers();
   }
 
   // 조회

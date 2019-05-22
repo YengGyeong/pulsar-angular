@@ -28,10 +28,5 @@ export class TeamFormComponent {
   closeDialog(): void {
     this.dialogRef.close();
   }
-
-  // 버튼 - 검색
-  openSelect() {
-    
-  }
   
 }
