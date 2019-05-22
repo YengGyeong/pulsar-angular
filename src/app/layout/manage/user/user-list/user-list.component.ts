@@ -9,6 +9,8 @@ import { UserFormComponent } from '../user-form/user-form.component';
 import { PageInfo } from '../../../common/model/page-info';
 import { Search } from 'src/app/layout/search-form/search';
 import { Observable } from 'rxjs';
+import { Team } from '../../team/model/team';
+import { UserSearch } from '../model/uesr-search';
 
 @Component({
   selector: 'app-user-list',
@@ -55,6 +57,7 @@ export class UserListComponent implements OnInit {
   pageInfo: PageInfo;
   length: number;
   pageSizeOptions: number[] = [5, 10, 25, 100];
+  search: UserSearch = new UserSearch();
 
   constructor(
     public dialog: MatDialog,
@@ -64,17 +67,28 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers();
-    this.userService.getCount().subscribe(data => {
+
+    this.userService.getCount(this.search).subscribe(data => {
       this.length = data;
     });
   }
 
   // 목록 불러오기 - 서비스 호출
   getUsers() {
-    this.userService.getUsers(this.pageInfo).subscribe(data => {
+    
+
+    // this.userService.getUsers(this.pageInfo).subscribe(data => {
+    //   this.dataSource.data = data;
+    //   console.log(data);
+    // });
+    let userSearch: UserSearch = this.getSearchDataSetting(this.searchList);
+    this.userService.findByConditions(this.pageInfo, userSearch).subscribe(data => {
       this.dataSource.data = data;
-      console.log(data);
     });
+    this.userService.getCount(userSearch).subscribe(data => {
+      this.length = data;
+    });
+
   }
 
   // 페이징
@@ -158,21 +172,29 @@ export class UserListComponent implements OnInit {
     // 체크박스 선택 모두 삭제
   }
 
-  courses$: Observable<User[]>;
-
   selectDataList(searchReqList: Search[]) {
-    console.log('받아온 거 '+searchReqList);
+    this.searchList = searchReqList;
 
-    let user = new User();
-    user.name = searchReqList[0].value;
-    user.date = searchReqList[2].value;
+    this.getUsers();
+  }
 
-    this.userService.findByConditions(this.pageInfo, searchReqList).subscribe(data => {
-      this.dataSource.data = data;
-    });
-    this.userService.getCount().subscribe(data => {
-      this.length = data;
-    });
+  getSearchDataSetting(searchList: Search[]) : UserSearch{
+    let search = new UserSearch();
+    //user.id = 0;
+    search.name = searchList[0].value;
+    search.startDate = (searchList[2] != undefined)? searchList[2].selectValues[0] : "1970-01-01";
+    
+    if(searchList[2] == undefined) {
+      const dateObj = new Date();
+      const today = dateObj.getFullYear() + "-" + dateObj.getMonth()+1 + "-" + dateObj.getDate();
+      search.endDate = today;
+    } else {
+      search.endDate = searchList[2].selectValues[1];
+    }
+    
+    search.teamId = 1;
+
+    return search;
   }
 
 }

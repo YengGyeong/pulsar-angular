@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { User } from '../model/user';
 import { PageInfo } from '../../../common/model/page-info';
 import { Search } from 'src/app/layout/search-form/search';
+import { Team } from '../../team/model/team';
+import { UserSearch } from '../model/uesr-search';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +28,13 @@ export class UserService {
     return this.http.get<User[]>(this.usersUrl, {params});
   }
 
-  public getCount() {
-    return this.http.get<number>(this.usersUrl + "/count");
+  public getCount(search: UserSearch) {
+
+    let params = new HttpParams();
+    Object.keys(search).forEach(function (key) {
+      params = params.append(key, search[key]);
+    })
+    return this.http.get<number>(this.usersUrl + "/count", {params});
   }
   public getUser(id: number) {
     return this.http.get<User>(this.usersUrl + "/" + id);
@@ -48,46 +55,18 @@ export class UserService {
     return this.http.delete<User>(this.usersUrl + "/" + id);
   }
 
-  public findByConditions(pageInfo: PageInfo, searchList: Search[]): Observable<any[]> {
+  public findByConditions(pageInfo: PageInfo, search: UserSearch): Observable<any[]> {
 
-    // let map = new Map<string, string>();
-
-    // map.set('pNo', pageInfo.pNo.toString());
-    // map.set('pSize', pageInfo.pSize.toString());
-    // map.set('dir', pageInfo.dir);
-    // map.set('key', pageInfo.key);
-
-    // for(let i=0; i<searchList.length; i++) {
-    //   if(searchList[i].kind == "text" || searchList[i].kind == "select")
-    //     map.set(searchList[i].column, searchList[i].value);
-    //   else if(searchList[i].kind == "date") {
-    //     map.set("startDate", searchList[i].selectValues[0]);
-    //     map.set("endDate", searchList[i].selectValues[1]);
-    //   }
-    // }
-
-    //map.set('name', )
-
-    // let httpParams = new HttpParams()
-    //   .set('pNo', pageInfo.pNo.toString())
-    //   .set('pSize', pageInfo.pSize.toString())
-    //   .set('dir', pageInfo.dir)
-    //   .set('key', pageInfo.key);
-    
-    let params = new HttpParams().set('pNo', pageInfo.pNo.toString())
+    let params = new HttpParams()
+    .set('pNo', pageInfo.pNo.toString())
     .set('pSize', pageInfo.pSize.toString())
     .set('dir', pageInfo.dir)
     .set('key', pageInfo.key);
-    
-    let user = new User();
-    user.id = 10;
-    user.name = "홍길동";
-
-     Object.keys(user).forEach(function (key) {
-       params = params.append(key, user[key]);
-       console.log('a'+user[key]);
+  
+     Object.keys(search).forEach(function (key) {
+       params = params.append(key, search[key]);
      })
-     console.log(params);
+
     return this.http.get<User[]>(this.usersUrl + "/conditions", {params});
   }
 
