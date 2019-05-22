@@ -18,18 +18,17 @@ export class TeamMainComponent implements OnInit {
   searchList: Search[] = [
     {
       kind: "text",
-      label: "팀이름",
-      column: 'z',
-      value: "pulsar"
+      label: "팀번호",
+      column: 'id',
+      value: ""
     },
     {
-      kind: "date",
-      label: "활동날짜",
-      selectDates: ["2019-05-14", "2019-05-16"],
-      column: 'z',
-      value: "",
-      selectValues: []
+      kind: "text",
+      label: "팀이름",
+      column: 'name',
+      value: ""
     }
+    
   ];
 
   displayedColumns: string[] = ['select', 'id', 'name'];

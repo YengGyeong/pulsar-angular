@@ -110,7 +110,6 @@ export class UserListComponent implements OnInit {
     const dialogRef = this.dialog.open(UserDetailComponent, {
       width: '600px',
       height: '400px',
-      autoFocus: false,
       data: user
     });
 
@@ -126,9 +125,8 @@ export class UserListComponent implements OnInit {
   // 버튼(조회) - 수정
   openUpdate(user: User) {
     const dialogRef = this.dialog.open(UserFormComponent, {
-      width: '600px',
-      height: '400px',
-      autoFocus: false,
+      width: '400px',
+      height: '300px',
       data: {state: "update", user: user}
     });
 
@@ -154,9 +152,8 @@ export class UserListComponent implements OnInit {
   // 버튼 - 생성
   openForm() {
     const dialogRef = this.dialog.open(UserFormComponent, {
-      width: '600px',
-      height: '400px',
-      autoFocus: false,
+      width: '400px',
+      height: '300px',
       data: {state: "add", user: null}
     });
 
@@ -185,16 +182,16 @@ export class UserListComponent implements OnInit {
     let search = new UserSearch();
     //user.id = 0;
     search.name = searchList[0].value;
-    search.startDate = (searchList[2] != undefined)? searchList[2].selectValues[0] : "1970-01-01";
-    
-    if(searchList[2] == undefined) {
+
+    if(searchList[2].selectValues == []){
+      search.startDate = (searchList[2] != undefined)? searchList[2].selectValues[0] : "1970-01-01";
       const dateObj = new Date();
       const today = dateObj.getFullYear() + "-" + dateObj.getMonth()+1 + "-" + dateObj.getDate();
       search.endDate = today;
     } else {
+      search.startDate = searchList[2].selectValues[0];
       search.endDate = searchList[2].selectValues[1];
     }
-    
     search.teamId = 1;
 
     return search;

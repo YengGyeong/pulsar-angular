@@ -46,14 +46,6 @@ export class UserMainComponent implements OnInit {
       selectValues: ["영업팀", "개발팀", "인사팀"],
       //selectUrl: "/searchTeamNameList",
       value: ""
-    },
-    {
-      kind: "date",
-      label: "입사일",
-      column : "join",
-      selectDates: ["2019-05-14", "2019-05-16"],
-      value: "",
-      selectValues: []
     }
   ];
 
@@ -72,6 +64,7 @@ export class UserMainComponent implements OnInit {
       this.pageInfo = new PageInfo(0, 5, "asc", "id");
   }
 
+  
   ngOnInit() {
     this.getUsers();
 
@@ -117,7 +110,6 @@ export class UserMainComponent implements OnInit {
     const dialogRef = this.dialog.open(UserDetailComponent, {
       width: '600px',
       height: '400px',
-      autoFocus: false,
       data: user
     });
 
@@ -133,9 +125,8 @@ export class UserMainComponent implements OnInit {
   // 버튼(조회) - 수정
   openUpdate(user: User) {
     const dialogRef = this.dialog.open(UserFormComponent, {
-      width: '600px',
-      height: '400px',
-      autoFocus: false,
+      width: '400px',
+      height: '300px',
       data: {state: "update", user: user}
     });
 
@@ -161,9 +152,8 @@ export class UserMainComponent implements OnInit {
   // 버튼 - 생성
   openForm() {
     const dialogRef = this.dialog.open(UserFormComponent, {
-      width: '600px',
-      height: '400px',
-      autoFocus: false,
+      width: '400px',
+      height: '300px',
       data: {state: "add", user: null}
     });
 
@@ -192,19 +182,18 @@ export class UserMainComponent implements OnInit {
     let search = new UserSearch();
     //user.id = 0;
     search.name = searchList[0].value;
-    search.startDate = (searchList[2] != undefined)? searchList[2].selectValues[0] : "1970-01-01";
-    
-    if(searchList[2] == undefined) {
+    console.log(searchList[2].selectValues.length);
+    if(searchList[2].selectValues.length == 0){
+      console.log('들어옴');
+      search.startDate = "1970-01-01";
       const dateObj = new Date();
-      const today = dateObj.getFullYear() + "-" + dateObj.getMonth()+1 + "-" + dateObj.getDate();
-      search.endDate = today;
+      search.endDate = dateObj.getFullYear() + "-" + ((dateObj.getMonth()+1)<10 ? '0'+ (dateObj.getMonth()+1) : (dateObj.getMonth()+1))+ "-" + dateObj.getDate();
     } else {
+      search.startDate = searchList[2].selectValues[0];
       search.endDate = searchList[2].selectValues[1];
     }
-    
-    search.teamId = 1;
-
+    search.teamId = Number(searchList[3].value);
+    console.log(search);
     return search;
   }
-
 }
