@@ -1,39 +1,43 @@
 <div mat-dialog-title>
   <span class="title">유저 상세조회</span>
-  <button mat-button class="btn-close" (click)="closeDialog()">X</button>
+  <button mat-icon-button class="btn-close" (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </button>
 </div>
 
 <div mat-dialog-content>
 
-  <div class="row-box">
-    <label for="id">id</label>
-    <input type="text" name="id" value="{{ user?.id }}" readonly>
-  </div>
+  <table>
+    <tr class="">
+      <th> ID </th>
+      <td> {{ user?.id }} </td>
+    </tr>
 
-  <div class="row-box">
-    <label for="name">name</label>
-    <input type="text" name="name" value="{{ user?.name }}"  readonly>
-  </div>
+    <tr class="">
+      <th> 이름 </th>
+      <td> {{ user?.name }} </td>
+    </tr>
 
-  <div class="row-box">
-    <label for="email">email</label>
-    <input type="text" name="email" value="{{ user?.email }}"  readonly>
-  </div>
+    <tr class="">
+      <th> 이메일 </th>
+      <td> {{ user?.email }} </td>
+    </tr>
+    
+    <tr class="">
+      <th> 입사일 </th>
+      <td> {{ user?.join }} </td>
+    </tr>
 
-  <div class="row-box">
-    <label for="join">join</label>
-    <input type="text" name="join" value="{{ user?.join }}"  readonly>
-  </div>
-
-  <div class="row-box">
-    <label for="team">team</label>
-    <input type="text" name="team" value="{{ user?.team.name }}"  readonly>
-  </div>
+    <tr class="">
+      <th> 부서 </th>
+      <td> {{ user?.team.name }} </td>
+    </tr>
+  </table>
 
 </div>
 
-<div mat-dialog-actions>
-  <button mat-stroked-button color="primary" (click)="openUpdate()">수정</button>
-  <button mat-stroked-button color="primary" (click)="openDelete()">삭제</button>
+<div mat-dialog-actions align="center">
+  <button mat-raised-button class="bottom-btn" color="primary" (click)="openUpdate()">수정</button>
+  <button mat-raised-button class="bottom-btn" color="primary" (click)="openDelete()">삭제</button>
 </div>
 

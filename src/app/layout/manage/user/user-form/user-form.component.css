@@ -14,5 +14,16 @@
 }
 
 .mat-dialog-title>span {
+    font-family: 'Fontil Sans';
     font-size: 30px;
+}
+
+
+.btn-team {
+    position:absolute;
+    right: 0px;
+    bottom:0px;
+    cursor: pointer;
+    border-radius: 5px;
+    background: rgb(255,255,255);
 }

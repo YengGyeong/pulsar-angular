@@ -1,30 +1,48 @@
-.row-box {
-    width: 100%;
+.mat-dialog-title {
     height: 40px;
-    padding-bottom: 10px;
+}
+
+.mat-dialog-title>span {
+    font-family: 'Fontil Sans';
+    font-size: 30px;
+}
+
+.btn-close {
+    float: right;
+}
+
+
+table {
+    width: 100%;
+}
+
+tr {
+    height: 40px;
+}
+
+th {
+    width: 30%;
+    border: 1px solid black;
+    background: aliceblue;
+}
+
+td {
+    width: 70%;
+    padding-left: 20px;
+    border: 1px solid black;
 }
 
 button {
     margin: 5px;
 }
 
-.btn-close {
-    float: right;
-    border: 0px;
+
+.bottom-div {
+    float: center;
+    text-align: center;
 }
 
-label {
-    width: 30%;
-}
-
-input {
-    width:70%;
-    padding: 10px;
-    border: 1px solid grey;
-    border-radius: 10px;
-    
-}
-
-.mat-dialog-title>span {
-    font-size: 30px;
+.bottom-btn {
+    float: center;
+    text-align: center;
 }

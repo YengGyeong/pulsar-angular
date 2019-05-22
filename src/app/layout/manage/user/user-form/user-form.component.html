@@ -1,8 +1,10 @@
 
 <div mat-dialog-title [ngSwitch]="state">
-    <span *ngSwitchCase="'add'">유저 생성</span>
-    <span *ngSwitchCase="'update'">유저 정보 수정</span>
-    <button mat-button class="btn-close" (click)="closeDialog()">X</button>
+  <span *ngSwitchCase="'add'">유저 생성</span>
+  <span *ngSwitchCase="'update'">유저 정보 수정</span>
+  <button mat-icon-button class="btn-close" (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </button>
 </div>
 
 <div mat-dialog-content class="form-container">
@@ -16,18 +18,17 @@
     <input matInput placeholder="email" [(ngModel)]="user.email">
   </mat-form-field>      
   <mat-form-field>
-    <input matInput placeholder="teamId" [(ngModel)]="user.team.id">
+    <input matInput placeholder="teamId" [(ngModel)]="user.team.id" readonly>
+    <button mat-icon-button class="btn-team" (click)="openSelectTeam()"><mat-icon>search</mat-icon></button>
   </mat-form-field>
   <mat-form-field>
     <input matInput placeholder="teamName" value="{{ user?.team.name }}" readonly>
   </mat-form-field>
-  <button mat-stroked-button color="primary" (click)="openSelect()">검색</button>
-
 </div>
 
-<div mat-dialog-actions [ngSwitch]="state">
-  <button mat-stroked-button color="primary" *ngSwitchCase="'add'" [mat-dialog-close]="user">생성</button>
-  <button mat-stroked-button color="primary" *ngSwitchCase="'update'" [mat-dialog-close]="user">수정</button>
-  <button mat-stroked-button color="primary" (click)="closeDialog()">취소</button>
+<div mat-dialog-actions align="center" [ngSwitch]="state">
+  <button mat-raised-button color="primary" *ngSwitchCase="'add'" [mat-dialog-close]="user">생성</button>
+  <button mat-raised-button color="primary" *ngSwitchCase="'update'" [mat-dialog-close]="user">수정</button>
+  <button mat-raised-button color="primary" (click)="closeDialog()">취소</button>
 </div>
 

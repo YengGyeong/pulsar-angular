@@ -1,0 +1,22 @@
+<h3>팀 관리</h3>
+<br />
+<search-form [searchList]="searchList" (sendToParent)="selectDataList($event)"></search-form>
+
+<div id="toolbar">
+  <button class="toolbar-btn" mat-raised-button color="primary" (click)="openForm()">생성</button>
+  <button class="toolbar-btn" mat-raised-button color="primary" (click)="deleteChecked()">삭제</button>
+</div>
+  
+<br>
+
+<app-team-list
+  [displayedColumns]="displayedColumns"
+  [tableHeaders]="tableHeaders"
+  [pageInfo]="pageInfo"
+  [length]="length"
+  [list]="list"
+  (event)="pageEventHandler($event)"
+></app-team-list>
+
+  
+  

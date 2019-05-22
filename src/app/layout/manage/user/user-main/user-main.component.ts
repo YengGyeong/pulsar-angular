@@ -9,12 +9,13 @@ import { UserFormComponent } from '../user-form/user-form.component';
 import { PageInfo } from '../../../common/model/page-info';
 import { Search } from 'src/app/layout/search-form/search';
 
+
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  selector: 'app-user-main',
+  templateUrl: './user-main.component.html',
+  styleUrls: ['./user-main.component.css']
 })
-export class UserListComponent implements OnInit {
+export class UserMainComponent implements OnInit {
 
   searchList: Search[] = [
     {

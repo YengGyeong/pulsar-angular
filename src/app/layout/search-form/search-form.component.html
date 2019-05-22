@@ -19,7 +19,7 @@
       
       <mat-grid-tile *ngSwitchCase="'popup'">
         <mat-form-field class="popup-area">
-          <input matInput class="popup-input" placeholder="{{search.label}}" [(ngModel)]="search.value" readonly="readonly" (click)="openDialog({{search.url}})"><i class="material-icons popup-btn">search</i>
+          <input matInput class="popup-input" placeholder="{{search.label}}" [(ngModel)]="search.value" readonly="readonly" (click)="openDialog(search.url)"><i class="material-icons popup-btn">search</i>
         </mat-form-field>
       </mat-grid-tile>
 

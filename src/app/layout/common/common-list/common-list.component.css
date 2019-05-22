@@ -1,0 +1,38 @@
+table.basic {
+    width: 100%;
+}
+
+table.basic > tr {
+    height: 40px;
+    border-bottom: 1px solid gray;
+}
+
+tr {
+    height: 40px;
+    border-bottom: 1px solid black;
+}
+
+th {
+    background: rgb(63, 81, 181);
+}
+
+.tb-header {
+    color: white;
+}
+
+.mat-sort-header-arrow {
+    color: white;
+}
+
+td {
+    padding-left: 20px;
+}
+
+tr.row-box:hover {
+    background: aliceblue;
+    cursor: pointer;
+}
+
+.selected-row {
+    background: aliceblue;
+}
