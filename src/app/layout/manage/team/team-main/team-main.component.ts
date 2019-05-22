@@ -45,15 +45,17 @@ export class TeamMainComponent implements OnInit {
 
   ngOnInit() {
     this.getTeams();
-    this.teamService.getCount().subscribe(data => {
-      this.length = data;
-    });
   }
 
   // 목록 불러오기 - 서비스 호출
   getTeams() {
-    this.teamService.getTeams(this.pageInfo).subscribe(data => {
+
+    let teamSearch: TeamSearch = this.getSearchDataSetting(this.searchList);
+    this.teamService.getTeams(this.pageInfo, teamSearch).subscribe(data => {
       this.list = data;
+    });
+    this.teamService.getCount(teamSearch).subscribe(data => {
+      this.length = data;
     });
   }
 

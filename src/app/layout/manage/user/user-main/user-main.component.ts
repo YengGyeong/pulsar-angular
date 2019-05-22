@@ -67,15 +67,11 @@ export class UserMainComponent implements OnInit {
   
   ngOnInit() {
     this.getUsers();
-
-    this.userService.getCount(this.search).subscribe(data => {
-      this.length = data;
-    });
   }
 
   // 목록 불러오기 - 서비스 호출
   getUsers() {
-  
+
     let userSearch: UserSearch = this.getSearchDataSetting(this.searchList);
     this.userService.getUsers(this.pageInfo, userSearch).subscribe(data => {
       this.dataSource.data = data;

@@ -17,9 +17,8 @@ export class UserService {
   constructor(private http: HttpClient) {
     this.usersUrl = 'http://localhost:8080/users';
   }
-  
-  public getUsers(pageInfo: PageInfo, search: UserSearch): Observable<any[]> {
 
+  public getUsers(pageInfo: PageInfo, search: UserSearch): Observable<any[]> {
     let params = new HttpParams()
     .set('pNo', pageInfo.pNo.toString())
     .set('pSize', pageInfo.pSize.toString())

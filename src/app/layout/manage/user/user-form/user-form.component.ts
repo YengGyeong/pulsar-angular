@@ -4,6 +4,7 @@ import { User } from '../model/user';
 import { Team } from '../../team/model/team';
 import { TeamService } from '../../team/service/team.service';
 import { PageInfo } from '../../../common/model/page-info';
+import { TeamSearch } from '../../team/model/team-searach';
 
 @Component({
   selector: 'app-user-form',
@@ -77,14 +78,16 @@ export class SelectTeamDialog {
 
   ngOnInit() {
     this.getTeams();
-    this.teamService.getCount().subscribe(data => {
+    let team: TeamSearch = new Team();
+    this.teamService.getCount(team).subscribe(data => {
       this.length = data;
     });
   }
 
   // 목록 불러오기 - 서비스 호출
   getTeams() {
-    this.teamService.getTeams(this.pageInfo).subscribe(data => {
+    let team: TeamSearch = new Team();
+    this.teamService.getTeams(this.pageInfo, team).subscribe(data => {
       this.list = data;
     });
   }
