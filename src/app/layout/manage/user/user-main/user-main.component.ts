@@ -75,14 +75,9 @@ export class UserMainComponent implements OnInit {
 
   // 목록 불러오기 - 서비스 호출
   getUsers() {
-    
-
-    // this.userService.getUsers(this.pageInfo).subscribe(data => {
-    //   this.dataSource.data = data;
-    //   console.log(data);
-    // });
+  
     let userSearch: UserSearch = this.getSearchDataSetting(this.searchList);
-    this.userService.findByConditions(this.pageInfo, userSearch).subscribe(data => {
+    this.userService.getUsers(this.pageInfo, userSearch).subscribe(data => {
       this.dataSource.data = data;
     });
     this.userService.getCount(userSearch).subscribe(data => {
@@ -174,7 +169,6 @@ export class UserMainComponent implements OnInit {
 
   selectDataList(searchReqList: Search[]) {
     this.searchList = searchReqList;
-
     this.getUsers();
   }
 
@@ -182,9 +176,7 @@ export class UserMainComponent implements OnInit {
     let search = new UserSearch();
     //user.id = 0;
     search.name = searchList[0].value;
-    console.log(searchList[2].selectValues.length);
     if(searchList[2].selectValues.length == 0){
-      console.log('들어옴');
       search.startDate = "1970-01-01";
       const dateObj = new Date();
       search.endDate = dateObj.getFullYear() + "-" + ((dateObj.getMonth()+1)<10 ? '0'+ (dateObj.getMonth()+1) : (dateObj.getMonth()+1))+ "-" + dateObj.getDate();
@@ -193,7 +185,6 @@ export class UserMainComponent implements OnInit {
       search.endDate = searchList[2].selectValues[1];
     }
     search.teamId = Number(searchList[3].value);
-    console.log(search);
     return search;
   }
 }

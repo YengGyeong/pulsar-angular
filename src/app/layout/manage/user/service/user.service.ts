@@ -17,13 +17,18 @@ export class UserService {
   constructor(private http: HttpClient) {
     this.usersUrl = 'http://localhost:8080/users';
   }
+  
+  public getUsers(pageInfo: PageInfo, search: UserSearch): Observable<any[]> {
 
-  public getUsers(pageInfo: PageInfo): Observable<any[]> {
-    const params = new HttpParams()
-      .set('pNo', pageInfo.pNo.toString())
-      .set('pSize', pageInfo.pSize.toString())
-      .set('dir', pageInfo.dir)
-      .set('key', pageInfo.key);
+    let params = new HttpParams()
+    .set('pNo', pageInfo.pNo.toString())
+    .set('pSize', pageInfo.pSize.toString())
+    .set('dir', pageInfo.dir)
+    .set('key', pageInfo.key);
+  
+     Object.keys(search).forEach(function (key) {
+       params = params.append(key, search[key]);
+     })
 
     return this.http.get<User[]>(this.usersUrl, {params});
   }
@@ -53,21 +58,6 @@ export class UserService {
 
   public deleteUser(id: number) {
     return this.http.delete<User>(this.usersUrl + "/" + id);
-  }
-
-  public findByConditions(pageInfo: PageInfo, search: UserSearch): Observable<any[]> {
-
-    let params = new HttpParams()
-    .set('pNo', pageInfo.pNo.toString())
-    .set('pSize', pageInfo.pSize.toString())
-    .set('dir', pageInfo.dir)
-    .set('key', pageInfo.key);
-  
-     Object.keys(search).forEach(function (key) {
-       params = params.append(key, search[key]);
-     })
-
-    return this.http.get<User[]>(this.usersUrl + "/conditions", {params});
   }
 
 }

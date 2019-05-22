@@ -82,12 +82,12 @@ export class UserListComponent implements OnInit {
     //   console.log(data);
     // });
     let userSearch: UserSearch = this.getSearchDataSetting(this.searchList);
-    this.userService.findByConditions(this.pageInfo, userSearch).subscribe(data => {
-      this.dataSource.data = data;
-    });
-    this.userService.getCount(userSearch).subscribe(data => {
-      this.length = data;
-    });
+    // this.userService.findByConditions(this.pageInfo, userSearch).subscribe(data => {
+    //   this.dataSource.data = data;
+    // });
+    // this.userService.getCount(userSearch).subscribe(data => {
+    //   this.length = data;
+    // });
 
   }
 

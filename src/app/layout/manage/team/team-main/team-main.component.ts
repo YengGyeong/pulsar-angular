@@ -7,6 +7,7 @@ import { TeamDetailComponent } from '../team-detail/team-detail.component';
 import { TeamFormComponent } from '../team-form/team-form.component';
 import { PageInfo } from '../../../common/model/page-info';
 import { Search } from 'src/app/layout/search-form/search';
+import { TeamSearch } from '../model/team-searach';
 
 @Component({
   selector: 'app-team-main',
@@ -129,6 +130,16 @@ export class TeamMainComponent implements OnInit {
   }
 
   selectDataList(searchReqList: Search[]) {
-    console.log('받아온 거 '+searchReqList);
+    this.searchList = searchReqList;
+    this.getTeams();
+  }
+
+  getSearchDataSetting(searchList: Search[]) : TeamSearch{
+    let search = new TeamSearch();
+    
+    search.id = Number(searchList[0].value);
+    search.name = searchList[1].value;
+
+    return search;
   }
 }
