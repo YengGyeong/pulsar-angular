@@ -19,6 +19,8 @@ import { SearchFormComponent } from './search-form/search-form.component';
 import { SearchFormModule } from './search-form/search-form.module';
 import { PulsarMaterialModule } from 'src/material-module';
 import { PopupModule } from './common/popup/popup.module';
+import { LocationViewComponent } from './location-view/location-view.component';
+import { LocationViewModule } from './location-view/location-view.module';
 
 @NgModule({
     imports: [
@@ -37,7 +39,8 @@ import { PopupModule } from './common/popup/popup.module';
     declarations: [LayoutComponent, NavComponent, TopnavComponent, SidebarComponent],
     exports : [
         PulsarMaterialModule,
-        SearchFormModule
+        SearchFormModule,
+        LocationViewModule
     ]
 })
 export class LayoutModule {}
