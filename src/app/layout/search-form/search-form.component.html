@@ -12,6 +12,7 @@
         <mat-form-field>
           <mat-select placeholder="{{search.label}}" #sel (selectionChange)="search.value=sel.value"
             [value]='search.value'>
+            <mat-option vlaue="">전체</mat-option>
             <mat-option *ngFor="let option of search.selectValues" value="{{option}}">{{option}}</mat-option>
           </mat-select>
         </mat-form-field>
