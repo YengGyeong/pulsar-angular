@@ -1,25 +1,28 @@
 <div mat-dialog-title>
-    <span>팀 상세조회</span>
-    <button mat-stroked-button color="primary" (click)="closeDialog()">X</button>
-  </div>
-  
-  <div mat-dialog-content>
-  
-    <div>
-      <label for="id">id</label>
-      <input type="text" name="id" value="{{ team?.id }}" readonly>
-    </div>
-  
-    <div>
-      <label for="name">name</label>
-      <input type="text" name="name" value="{{ team?.name }}"  readonly>
-    </div>
-  
-  </div>
-  
-  <div mat-dialog-actions>
-    <button mat-stroked-button color="primary" (click)="openUpdate()">수정</button>
-    <button mat-stroked-button color="primary" (click)="openDelete()">삭제</button>
-  </div>
-  
-  
+  <span class="title">팀 상세조회</span>
+  <button mat-icon-button class="btn-close" (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div mat-dialog-content>
+
+  <table>
+    <tr class="">
+      <th> ID </th>
+      <td> {{ team?.id }} </td>
+    </tr>
+
+    <tr class="">
+      <th> 부서명 </th>
+      <td> {{ team?.name }} </td>
+    </tr>
+  </table>
+
+</div>
+
+<div mat-dialog-actions align="center">
+  <button mat-raised-button class="bottom-btn" color="primary" (click)="openUpdate()">수정</button>
+  <button mat-raised-button class="bottom-btn" color="primary" (click)="openDelete()">삭제</button>
+</div>
+

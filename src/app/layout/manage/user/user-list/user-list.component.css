@@ -24,10 +24,6 @@ body {
     background: aliceblue;
   }
   
-  td.cdk-column-name:hover {
-    cursor: pointer;
-  }
-  
   th {
     width: 150px;
   }
