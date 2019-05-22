@@ -4,6 +4,8 @@ import { Search } from './search';
 import { forEach } from '@angular/router/src/utils/collection';
 import { MatDialog } from '@angular/material';
 import { UserListComponent } from '../manage/user/user-list/user-list.component';
+import { PopupComponent } from '../common/popup/popup.component';
+import { stringToKeyValue } from '@angular/flex-layout/extended/typings/style/style-transforms';
 
 
 @Component({
@@ -16,7 +18,10 @@ export class SearchFormComponent implements OnInit {
   _searchList: Search[];
   gridHeight: any; 
 
-  constructor( public dialog: MatDialog ) { }
+
+  constructor( public dialog: MatDialog) { 
+
+  }
 
   @Input()
   set searchList(searchList:Search[]) {
@@ -29,7 +34,11 @@ export class SearchFormComponent implements OnInit {
     });
     this._searchList = searchList;
 
-    this.gridHeight = (70 + (searchList.length/3) * 20) + "px";
+    if(searchList.length <= 3) {
+      this.gridHeight = "70px";
+    } else {
+      this.gridHeight =  (Math.floor(searchList.length/3)) * 70 + "px";
+    }
   }
   get searchList() {
     return this._searchList;
@@ -82,20 +91,27 @@ export class SearchFormComponent implements OnInit {
     this.breakpoint = (window.innerWidth >= 1200) ? 3 : 2;
   }
 
-  openDialog(url: string) {
-    alert(url);
+  getDialogResult(): void{ 
+    this.openDialog("유저삭제","삭제하시겠습니까?", this.testFunc);
   }
 
+  testFunc(): void{
+    console.log('클릭');
+  }
 
+  openDialog(tit: string, mess: string, func: Function): void {
+    const dialogRef = this.dialog.open(PopupComponent, {
+      width: '350px',
+      height: '200px',
+      data: {
+        title: tit,
+        message: mess
+      }
+    }); 
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if(result != null) {
-    //     this.userService.addUser(result).subscribe(data => {
-    //       this.length += 1;
-    //       this.getUsers();
-    //     });
-    //   }
-    // });
-
-
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == 'Y')
+        func();
+    });
+  }
 }

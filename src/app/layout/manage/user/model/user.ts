@@ -5,5 +5,5 @@ export class User {
     name: string;
     email: string;
     team: Team;
-    date: string;
+    join: string;
 }

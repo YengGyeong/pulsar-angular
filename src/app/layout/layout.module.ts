@@ -18,7 +18,7 @@ import { NavComponent } from './nav/nav.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { SearchFormModule } from './search-form/search-form.module';
 import { PulsarMaterialModule } from 'src/material-module';
-import { TeamListComponent } from './manage/team/team-list/team-list.component';
+import { PopupModule } from './common/popup/popup.module';
 
 @NgModule({
     imports: [
@@ -31,7 +31,8 @@ import { TeamListComponent } from './manage/team/team-list/team-list.component';
         MatInputModule,
         MatMenuModule,
         MatListModule,
-        TranslateModule
+        TranslateModule,
+        PopupModule
     ],
     declarations: [LayoutComponent, NavComponent, TopnavComponent, SidebarComponent],
     exports : [

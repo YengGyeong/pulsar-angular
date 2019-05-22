@@ -8,6 +8,7 @@ import { Team } from '../model/team';
   templateUrl: './team-list.component.html',
   styleUrls: ['./team-list.component.css']
 })
+
 export class TeamListComponent {
 
   @Input() displayedColumns: string[];

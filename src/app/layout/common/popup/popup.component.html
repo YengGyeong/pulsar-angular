@@ -1,0 +1,8 @@
+<h1 mat-dialog-title style="font-family: 'Raleway';font-weight: bolder;">{{data.title}}</h1>
+<div mat-dialog-content>
+  <p>{{data.message}}</p>
+</div>
+<mat-dialog-actions align="center" > 
+  <button mat-raised-button color="primary" [mat-dialog-close]="'Y'" cdkFocusInitial>예</button>
+  <button mat-raised-button color="basic" (click)="onNoClick()">아니오</button>
+</mat-dialog-actions>
