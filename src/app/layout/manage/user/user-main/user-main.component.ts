@@ -67,9 +67,15 @@ export class UserMainComponent implements OnInit {
     this.getUsers();
   }
 
-  userListEventHandler(pageInfo: PageInfo) {
-    this.pageInfo = pageInfo;
-    this.getUsers();
+  userListEventHandler(event: any) {
+    if(event instanceof PageInfo) {
+      this.pageInfo = event;
+      this.getUsers();
+    } else {
+      if(event.state === "openGet") {
+        this.openGet(this.list[event.idx]);
+      }
+    }
   }
 
   // 목록 불러오기 - 서비스 호출
