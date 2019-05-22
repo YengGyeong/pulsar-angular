@@ -42,25 +42,31 @@ export class UserListComponent {
     this.event.emit(this.pageInfo);
   }
 
-  // row 선택
+  // row 선택 - 한번클릭
   selectRow(idx: number) {
     const className = 'selected-row';
     let preSelected = document.getElementsByClassName(className);
     let curSelected = document.getElementById(this.userList[idx].id.toString());
-    let selectedIdx;
+    let result = {"state":"selectRow", "idx":idx};
     
     if(curSelected.classList.contains(className)) { //토글
-      selectedIdx = -1;
+      result.idx = -1;
       curSelected.classList.remove(className);
     } else {
-      selectedIdx = idx;
       if(preSelected.length != 0) { //이전선택 취소
         preSelected[0].classList.remove(className); 
       }
       curSelected.classList.add(className);
     }
 
-    this.event.emit(selectedIdx);
+    this.event.emit(result);
   }
+
+  // 조회 - 더블클릭
+  openGet(idx: number) {
+
+    let result = {"state":"openGet", "idx":idx};
+    this.event.emit(result);
+  } 
 
 }

@@ -60,9 +60,15 @@ export class TeamMainComponent implements OnInit {
   }
 
   teamListEventHandler(event: any) {
+
     if(event instanceof PageInfo) {
       this.pageInfo = event;
       this.getTeams();
+
+    } else {
+      if(event.state === "openGet") {
+        this.openGet(this.list[event.idx]);
+      }
     }
   }
 
