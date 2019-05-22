@@ -36,7 +36,7 @@ export class UserMainComponent implements OnInit {
       kind: "date",
       label: "입사일",
       column : "join",
-      selectDates: ["2019-05-14", "2019-05-16"],
+      selectDates: ["2019-05-14", "2019-05-20"],
       value: "",
       selectValues: []
     },
@@ -44,8 +44,8 @@ export class UserMainComponent implements OnInit {
       kind: "select",
       label: "부서",
       column: "team",
-      selectValues: ["영업팀", "개발팀", "인사팀"],
-      //selectUrl: "/searchTeamNameList",
+      selectValues: ["영업팀1", "개발팀"],
+      selectUrl: "/searchTeamNameList",
       value: ""
     }
   ];
@@ -195,7 +195,10 @@ export class UserMainComponent implements OnInit {
       search.startDate = searchList[2].selectValues[0];
       search.endDate = searchList[2].selectValues[1];
     }
-    search.teamId = Number(searchList[3].value);
+    if(searchList[3].value == '영업팀1')
+      search.teamId = Number(1);
+    else if(searchList[3].value == '개발팀')
+      search.teamId = Number(2);
     return search;
   }
 }
