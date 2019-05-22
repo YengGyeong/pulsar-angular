@@ -68,9 +68,11 @@ export class UserMainComponent implements OnInit {
   }
 
   userListEventHandler(event: any) {
+
     if(event instanceof PageInfo) {
       this.pageInfo = event;
       this.getUsers();
+
     } else {
       if(event.state === "openGet") {
         this.openGet(this.list[event.idx]);
