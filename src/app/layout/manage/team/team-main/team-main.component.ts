@@ -59,9 +59,11 @@ export class TeamMainComponent implements OnInit {
     });
   }
 
-  pageEventHandler(pageInfo: PageInfo) {
-    this.pageInfo = pageInfo;
-    this.getTeams();
+  teamListEventHandler(event: any) {
+    if(event instanceof PageInfo) {
+      this.pageInfo = event;
+      this.getTeams();
+    }
   }
 
   // 조회

@@ -3,12 +3,23 @@
         <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/dashboard']">
             <mat-icon class="sidenav-icon">dashboard</mat-icon> {{ 'Dashboard' | translate }}
         </a>
-        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/team/main']">
-            <mat-icon class="sidenav-icon">people</mat-icon> {{ 'Team' | translate }}
-        </a>
-        <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/user']">
-            <mat-icon class="sidenav-icon">person</mat-icon> {{ 'User' | translate }}
-        </a>
+        <div class="nested-menu">
+            <a mat-list-item (click)="addExpandClass('pages')">
+                <mat-icon class="sidenav-icon">add</mat-icon> {{ 'VTW' | translate }}
+            </a>
+            <ul class="nested submenu" [class.expand]="showMenu === 'pages'">
+                <li>
+                    <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/team/main']" style="padding:0 0px;">
+                        <mat-icon class="sidenav-icon">people</mat-icon> {{ 'Team' | translate }}
+                    </a>
+                </li>
+                <li>
+                    <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/user']" style="padding:0 0px;">
+                        <mat-icon class="sidenav-icon">person</mat-icon> {{ 'User' | translate }}
+                    </a>
+                </li>
+            </ul>
+        </div> 
         
         <!--
         <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/charts']">
@@ -28,7 +39,7 @@
         </a>
         <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/blank-page']">
             <mat-icon class="sidenav-icon">insert_drive_file</mat-icon> {{ 'Blank Page' | translate }}
-        </a>
+        </a> 
         <div class="nested-menu">
             <a mat-list-item (click)="addExpandClass('pages')">
                 <mat-icon class="sidenav-icon">add</mat-icon> {{ 'Menu' | translate }}

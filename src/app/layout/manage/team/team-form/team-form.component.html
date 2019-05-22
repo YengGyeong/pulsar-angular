@@ -1,27 +1,24 @@
 
 <div mat-dialog-title [ngSwitch]="state">
-    <span *ngSwitchCase="'add'">팀 생성</span>
-    <span *ngSwitchCase="'update'">팀 정보 수정</span>
-    <button mat-stroked-button color="primary" (click)="closeDialog()">X</button>
+  <span *ngSwitchCase="'add'">팀 생성</span>
+  <span *ngSwitchCase="'update'">팀 정보 수정</span>
+  <button mat-icon-button class="btn-close" (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </button>
 </div>
 
-<div mat-dialog-content>
-  <form action="">
-    <div>
-      <label for="id">id</label>
-      <input type="text" name="id" [(ngModel)]="team.id" >
-    </div>
-
-    <div>
-      <label for="name">name</label>
-      <input type="text" name="name" [(ngModel)]="team.name">
-    </div>
-  </form>
+<div mat-dialog-content class="form-container">
+  <mat-form-field>
+    <input matInput placeholder="id" [(ngModel)]="team.id">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="name" [(ngModel)]="team.name">
+  </mat-form-field>
 </div>
 
-<div mat-dialog-actions [ngSwitch]="state">
-  <button mat-stroked-button color="primary" *ngSwitchCase="'add'" [mat-dialog-close]="team">생성</button>
-  <button mat-stroked-button color="primary" *ngSwitchCase="'update'" [mat-dialog-close]="team">수정</button>
-  <button mat-stroked-button color="primary" (click)="closeDialog()">취소</button>
+<div mat-dialog-actions align="center" [ngSwitch]="state">
+  <button mat-raised-button color="primary" *ngSwitchCase="'add'" [mat-dialog-close]="team">생성</button>
+  <button mat-raised-button color="primary" *ngSwitchCase="'update'" [mat-dialog-close]="team">수정</button>
+  <button mat-raised-button color="primary" (click)="closeDialog()">취소</button>
 </div>
 
