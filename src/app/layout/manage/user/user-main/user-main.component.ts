@@ -9,6 +9,7 @@ import { UserFormComponent } from '../user-form/user-form.component';
 import { PageInfo } from '../../../common/model/page-info';
 import { Search } from 'src/app/layout/search-form/search';
 import { UserSearch } from '../model/uesr-search';
+import { PopupComponent } from 'src/app/layout/common/popup/popup.component';
 
 
 @Component({
@@ -132,13 +133,27 @@ export class UserMainComponent implements OnInit {
 
   // 버튼(조회) - 삭제
   openDelete(id: number) {
-    if(confirm("정말 삭제하시겠습니까?")) {
-      this.userService.deleteUser(id).subscribe(data => {
-        this.length -= 1;
-        this.getUsers();
-      });
-    }
+    this.openDialog("유저삭제","정말 삭제하시겠습니까?", id);
   }  
+
+  openDialog(tit: string, mess: string, id: number): void {
+    const dialogRef = this.dialog.open(PopupComponent, {
+      width: '350px',
+      height: '200px',
+      data: {
+        title: tit,
+        message: mess
+      }
+    }); 
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == 'Y')
+        this.userService.deleteUser(id).subscribe(data => {
+          this.length -= 1;
+          this.getUsers();
+        });
+    });
+  }
 
   // 버튼 - 생성
   openForm() {

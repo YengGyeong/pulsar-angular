@@ -59,6 +59,7 @@ export class SearchFormComponent implements OnInit {
   }
 
   sendToParent(searchList) {   
+
     searchList.forEach(function(v) {
       if(v.kind == "date") {
         v.selectDates.forEach(function(v1, index, array){
@@ -73,8 +74,6 @@ export class SearchFormComponent implements OnInit {
       }
     });
     
-    console.log(searchList);
-
     this.sendEvent.emit(searchList);
   }
 

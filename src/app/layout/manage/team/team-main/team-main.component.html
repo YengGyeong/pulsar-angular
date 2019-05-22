@@ -1,6 +1,6 @@
-<h3>팀 관리</h3>
+<h3>⊙ 팀 관리</h3>
 <br />
-<search-form [searchList]="searchList" (sendToParent)="selectDataList($event)"></search-form>
+<search-form [searchList]="searchList" (sendEvent)="[selectDataList($event)]"></search-form>
 
 <div id="toolbar">
   <button class="toolbar-btn" mat-raised-button color="primary" (click)="openForm()">생성</button>
