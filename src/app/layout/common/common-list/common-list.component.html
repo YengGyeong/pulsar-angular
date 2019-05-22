@@ -1,30 +1,19 @@
-
-<table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8"
-(matSortChange)="sortData($event)">
-
-  <!-- Checkbox Column -->
-  <ng-container matColumnDef="select">
-    <th mat-header-cell *matHeaderCellDef>
-      <mat-checkbox>
-      </mat-checkbox>
+<table matSort (matSortChange)="sortData($event)" class="basic">
+  <tr>
+    <th *ngIf="showCheckBox">
+      <mat-checkbox></mat-checkbox>
     </th>
-    <td mat-cell *matCellDef="let row">
-      <mat-checkbox>
-      </mat-checkbox>
+    <th *ngFor="let columnName of propertyNames; let i=index" mat-sort-header="{{columnName}}" >
+      <p class="tb-header"> {{ tableHeaders[i] }} </p>
+    </th>
+  </tr>
+
+  <tr *ngFor="let obj of list; let i=index" class="row-box" id="row{{i}}" (click)="selectRow(i)">
+    <td *ngIf="showCheckBox"><mat-checkbox></mat-checkbox></td>
+    <td *ngFor="let propertyName of toList(obj)">
+      {{ obj['team'].name }}
     </td>
-  </ng-container>
-
-  <!-- displayColumns -->
-  <div *ngFor="let columnName of displayedColumns; let i=index">
-    <ng-container *ngIf="i != 0" matColumnDef={{columnName}}>
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ columnName }} </th>
-      <td mat-cell *matCellDef="let element"> {{ element.columnName }} </td>
-    </ng-container>
-  </div>
-
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </tr>
 </table>
 
 <mat-paginator [length]="length" [pageSize]="pageInfo.pageSize" [pageSizeOptions]="pageSizeOptions"

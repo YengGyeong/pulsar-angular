@@ -8,16 +8,15 @@ import { UserDetailComponent } from '../user-detail/user-detail.component';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { PageInfo } from '../../../common/model/page-info';
 import { Search } from 'src/app/layout/search-form/search';
-import { Observable } from 'rxjs';
-import { Team } from '../../team/model/team';
 import { UserSearch } from '../model/uesr-search';
 
+
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  selector: 'app-user-main',
+  templateUrl: './user-main.component.html',
+  styleUrls: ['./user-main.component.css']
 })
-export class UserListComponent implements OnInit {
+export class UserMainComponent implements OnInit {
 
   searchList: Search[] = [
     {
@@ -29,7 +28,7 @@ export class UserListComponent implements OnInit {
     {
       kind: "popup",
       label: "팀",
-      column: "team",
+      column: "name",
       value: ""
     },
     {
@@ -47,6 +46,14 @@ export class UserListComponent implements OnInit {
       selectValues: ["영업팀", "개발팀", "인사팀"],
       //selectUrl: "/searchTeamNameList",
       value: ""
+    },
+    {
+      kind: "date",
+      label: "입사일",
+      column : "join",
+      selectDates: ["2019-05-14", "2019-05-16"],
+      value: "",
+      selectValues: []
     }
   ];
 

@@ -1,0 +1,23 @@
+<div mat-dialog-title [ngSwitch]="state">
+  <span> 팀 선택 </span>
+  <button mat-icon-button class="btn-close" (click)="closeDialog()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<div>
+  <app-team-list
+    [displayedColumns]="displayedColumns"
+    [tableHeaders]="tableHeaders"
+    [pageInfo]="pageInfo"
+    [length]="length"
+    [list]="list"
+    (event)="teamListEventHandler($event)"
+  ></app-team-list>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="selectTeam()">선택</button>
+  <button mat-raised-button color="primary" (click)="closeDialog()">취소</button>
+</div>
+

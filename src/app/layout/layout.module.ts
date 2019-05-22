@@ -18,7 +18,6 @@ import { NavComponent } from './nav/nav.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { SearchFormModule } from './search-form/search-form.module';
 import { PulsarMaterialModule } from 'src/material-module';
-import { PopupComponent } from './common/popup/popup.component';
 import { PopupModule } from './common/popup/popup.module';
 
 @NgModule({

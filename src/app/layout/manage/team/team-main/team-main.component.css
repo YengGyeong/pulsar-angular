@@ -1,12 +1,8 @@
-.table-box {
-  min-height: 300px;
-}
-
-.user-table {
-  width: 100%;
-}
-
-body { 
+.team-table {
+    width: 100%;
+  }
+  
+  body { 
     font-family: Roboto, Arial, sans-serif;
     margin: 0;
   }
@@ -29,14 +25,14 @@ body {
   }
   
   th {
-    width: 150px;
+    width: 100px;
   }
-
+  
   #toolbar {
     padding-top: 10px;
     padding-bottom: 10px;
   }
-
+  
   .toolbar-btn {
     margin-right: 10px;
   }

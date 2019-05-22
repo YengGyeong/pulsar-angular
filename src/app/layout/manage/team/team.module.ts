@@ -7,15 +7,15 @@ import { TeamFormComponent } from './team-form/team-form.component';
 import { LayoutModule } from 'src/app/layout/layout.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SearchFormModule } from '../../search-form/search-form.module';
-import { CommonListComponent } from '../../common/common-list/common-list.component';
 import { FormsModule } from '@angular/forms';
+import { TeamMainComponent } from './team-main/team-main.component';
 
 @NgModule({
   declarations: [
-    TeamListComponent,
     TeamDetailComponent,
     TeamFormComponent,
-    CommonListComponent
+    TeamMainComponent,
+    TeamListComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +26,9 @@ import { FormsModule } from '@angular/forms';
   entryComponents: [
     TeamDetailComponent,
     TeamFormComponent
+  ],
+  exports: [
+    TeamListComponent
   ]
 })
 export class TeamModule { }
