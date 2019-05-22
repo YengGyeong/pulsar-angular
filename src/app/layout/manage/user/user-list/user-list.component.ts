@@ -59,7 +59,6 @@ export class UserListComponent {
       curSelected.classList.add(className);
     }
 
-    result.idx
     this.event.emit(result);
   }
 

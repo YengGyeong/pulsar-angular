@@ -93,11 +93,15 @@ export class SelectTeamDialog {
   }
 
   teamListEventHandler(event: any) {
+
     if(event instanceof PageInfo) {
       this.pageInfo = event;
       this.getTeams();
-    } else if(Number.isInteger(event)) {
-      this.selectedTeam = (event != -1) ? this.list[event] : null;
+
+    } else {
+      if(event.state === "selectRow") {
+        this.selectedTeam = (event.idx != -1) ? this.list[event.idx] : null;
+      }
     }
   }
 

@@ -36,3 +36,7 @@ body {
   .toolbar-btn {
     margin-right: 10px;
   }
+
+  .selected-row {
+    background: aliceblue;
+  }
