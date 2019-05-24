@@ -14,6 +14,7 @@ const routes: Routes = [
             },
             { path: 'team', loadChildren: './manage/team/team.module#TeamModule' },
             { path: 'user', loadChildren: './manage/user/user.module#UserModule' },
+            { path: 'schedule', loadChildren: './manage/schedule/schedule.module#ScheduleModule' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'}
             // {
             //     path: 'charts',

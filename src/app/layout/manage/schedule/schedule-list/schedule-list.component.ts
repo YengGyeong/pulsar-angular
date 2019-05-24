@@ -1,32 +1,29 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import { PageInfo } from '../../../common/model/page-info';
-import { User } from '../model/user';
+import { Schedule } from '../model/schedule';
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  selector: 'app-schedule-list',
+  templateUrl: './schedule-list.component.html',
+  styleUrls: ['./schedule-list.component.scss']
 })
-export class UserListComponent {
+export class ScheduleListComponent {
 
   @Input() displayedColumns: string[];
-  @Input() tableHeaders: string[];
   @Input() pageInfo: PageInfo;
   @Input() length: number;
-  @Input() set list(theList:  User[]) {
+  @Input() set list(theList:  Schedule[]) {
     this.dataSource.data = theList;
-    this.userList = theList;
+    this.scheduleList = theList;
   };
   @Output() event = new EventEmitter<any>();
 
-  dataSource = new MatTableDataSource<User>();
+  dataSource = new MatTableDataSource<Schedule>();
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  userList: User[];
+  scheduleList: Schedule[];
 
-  constructor() {
-    //this.pageInfo=new PageInfo(0, 5, "asc", "id");
-  }
+  constructor() {}
 
   // 페이징
   paginate(pageEvent: PageEvent) {
@@ -46,7 +43,7 @@ export class UserListComponent {
   selectRow(idx: number) {
     const className = 'selected-row';
     let preSelected = document.getElementsByClassName(className);
-    let curSelected = document.getElementById(this.userList[idx].id.toString());
+    let curSelected = document.getElementById(this.scheduleList[idx].trgId);
     let result = {"state":"selectRow", "idx":idx};
     
     if(curSelected.classList.contains(className)) { //토글
